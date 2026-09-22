@@ -6,22 +6,26 @@ public class Player {
     }
 
     public boolean goNorth(){
-        currentRoom = currentRoom.goNorth();
+        currentRoom = currentRoom.getRoomNorth();
         return currentRoom != null;
     }
 
     public boolean goSouth(){
-        currentRoom = currentRoom.goSouth();
+        currentRoom = currentRoom.getRoomSouth();
         return currentRoom != null;
     }
 
     public boolean goEast(){
-        currentRoom = currentRoom.goEast();
+        currentRoom = currentRoom.getRoomEast();
         return currentRoom != null;
     }
 
     public boolean goWest(){
-        currentRoom = currentRoom.goWest();
+        currentRoom = currentRoom.getRoomWest();
         return currentRoom != null;
+    }
+
+    public Room whereAreYou(){
+        return currentRoom;
     }
 }
