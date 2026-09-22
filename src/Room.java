@@ -1,12 +1,28 @@
 public class Room {
     private Room firstRoom;
+    private Room north;
+    private Room south;
+    private Room east;
+    private Room west;
 
     public Room(){
        createRoomOrder;
     }
 
-    public Room setRoomNorth(){
+    public Room setRoomNorth(Room room){
+        return this.north = room;
+    }
 
+    public Room setRoomSouth(Room room){
+        return this.south = room;
+    }
+
+    public Room setRoomEast(Room room){
+        return this.east = room;
+    }
+
+    public Room setRoomWest(Room room){
+        return this.west = room;
     }
 
     public Room getFirstRoom(){
