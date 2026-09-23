@@ -1,6 +1,8 @@
 //Bygger kortet og ejer spilleren. Er bindeled mellem UserInterface og resten af spillet
 public class Adventure {
+    //Vi skal bruge firstRoom, til at se hvor brugeren starter
     private Room firstRoom;
+    //Vi skal bruge player, for at kalde diverse metoder på den.
     private Player player;
 
     Adventure(){
@@ -9,11 +11,14 @@ public class Adventure {
         player = new Player(firstRoom);
     }
 
+    //Metode til at få første rum, bruges ikke...(kan nok godt slettes)
     public Room getFirstRoom() {
         return firstRoom;
     }
 
-    //Prøver at flytte spilleren. Giver false hvis der ikke er noget rum den vej
+    //Metoder til at gå en retning. De laver ikke selv arbejdet, men sender beskeden videre
+    //til goXXX() i Player, som er den der kender og flytter spillerens nuværende rum.
+    //Svaret er true hvis spilleren blev flyttet, og false hvis der var en væg.
     public boolean goNorth(){
         return player.goNorth();
     }
@@ -45,31 +50,36 @@ public class Adventure {
         //Spilleren starter i det første rum
         firstRoom = room1;
 
-        //Forbind rummene to og to. Går man øst ind i et rum, skal man kunne gå vest tilbage igen
+        //Forbinder rummene to og to. Eks. går man øst ind i et rum, skal man kunne gå vest tilbage igen.
+        //Det er de her forbindelser spillet slår op i, når spilleren skriver en retning:
+        //Hvis brugeren indtaster "EAST" -> kalder adventure.goEast() -> player.goEast()
+        //-> som spørger sit nuværende rum getRoomEast(). Svaret er præcis det rum, der blev sat herunder.
+
+        //Øverste række: 1 - 2 - 3
         room1.setRoomEast(room2);
         room2.setRoomWest(room1);
-
-        room1.setRoomSouth(room4);
-        room4.setRoomNorth(room1);
-
         room2.setRoomEast(room3);
         room3.setRoomWest(room2);
 
-        room3.setRoomSouth(room6);
-        room6.setRoomNorth(room3);
-
+        //Venstre side ned: 1 - 4 - 7
+        room1.setRoomSouth(room4);
+        room4.setRoomNorth(room1);
         room4.setRoomSouth(room7);
         room7.setRoomNorth(room4);
 
-        room5.setRoomSouth(room8);
-        room8.setRoomNorth(room5);
-
+        //Højre side ned: 3 - 6 - 9
+        room3.setRoomSouth(room6);
+        room6.setRoomNorth(room3);
         room6.setRoomSouth(room9);
         room9.setRoomNorth(room6);
 
+        //Rum 5 ligger i midten og har kun én dør, ned til rum 8
+        room5.setRoomSouth(room8);
+        room8.setRoomNorth(room5);
+
+        //Nederste række: 7 - 8 - 9
         room7.setRoomEast(room8);
         room8.setRoomWest(room7);
-
         room8.setRoomEast(room9);
         room9.setRoomWest(room8);
     }

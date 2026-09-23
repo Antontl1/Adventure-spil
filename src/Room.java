@@ -1,32 +1,40 @@
 //Et enkelt rum. Kender sit eget navn og beskrivelse,
 //og hvilke rum der ligger mod nord, syd, øst og vest
 public class Room {
+    //instansvariabeler
+    //rummet skal have et navn
     private String name;
+    //en beskrivelse
     private String description;
+    //og fire naboer: rummene der ligger mod nord, syd, øst og vest.
+    //De er null indtil Adventure sætter dem, og null betyder "ingen dør den vej"
     private Room north;
     private Room south;
     private Room east;
     private Room west;
 
+    //konstruktør for rum, bruges i Adventure til at oprette rum
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
     }
-
+    //Metode til at få navnet på et rum, bruges i look metoden i Adventure
     public String getName() {
         return name;
     }
-
+    //Metode til at få beskrivelse på et rum, bruges i look metoden i Adventure
     public String getDescription() {
         return description;
     }
 
-    public Room getRoomNorth() {
-        return north;
-    }
-
+    //Setterne bruges kun én gang, i createRoomOrder i Adventure, hvor kortet bygges.
+    //Getterne bruges hver gang spilleren går: Player spørger sit nuværende rum hvem naboen er den vej, og flytter kun hvis svaret ikke er null
     public Room setRoomNorth(Room room) {
         return this.north = room;
+    }
+
+    public Room getRoomNorth() {
+        return north;
     }
 
     public Room getRoomSouth() {

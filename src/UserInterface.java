@@ -1,15 +1,15 @@
 public class UserInterface {
+    //Instansvariabel så alle metoder i klassen kan nå spillet.
     private Adventure adventure;
 
+    //Konstruktøren får et færdigbygget Adventure udefra, fra Main, og gemmer det i feltet, Så man kan spille spillet.
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
     }
 
 
     public void runGame() {
-
-        //Spilleren starter i det første rum
-
+        //sætter gaming is running til at spillet kører ie. true
         boolean gameIsRunning = true;
 
         IO.println("Welcome to The Adventure Game!\n You find yourself in a darkest of dungeons ...");
@@ -20,6 +20,7 @@ public class UserInterface {
 
         while (gameIsRunning) {
 
+            //Brugeren kan skrive en kommando der bliver pases som et parameter til switch
             String kommando = IO.readln();
 
             switch (kommando) {
@@ -57,6 +58,7 @@ public class UserInterface {
                 }
                 case "EXIT" -> {
                     IO.print("Goodbye!");
+                    //afslutter spillet ved at sætte game is running til false
                     gameIsRunning = false;
                 }
                 case "LOOK" -> {
