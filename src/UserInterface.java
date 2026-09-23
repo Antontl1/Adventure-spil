@@ -64,7 +64,7 @@ public class UserInterface {
                 }
                 case "HELP" -> {
                     IO.println("--- COMMANDS ---");
-                    IO.println("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
+                    IO.println("Type GO NORTH, GO EAST, GO WEST or GO SOUTH for the direction you want to go");
                     IO.println("Type EXIT to exit the game");
                     IO.println("Type LOOK for taking look around the room you currently standing in");
                 }
