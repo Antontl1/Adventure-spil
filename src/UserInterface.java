@@ -1,11 +1,14 @@
 public class UserInterface {
+    private Adventure adventure;
+
+    public UserInterface(Adventure adventure) {
+        this.adventure = adventure;
+    }
 
     public void runGame() {
-        Adventure adventure = new Adventure();
-        Room theFirstRoom = adventure.getFirstRoom();
-        Player player = new Player(theFirstRoom);
 
         boolean gameIsRunning = true;
+
         IO.println("Welcome to The Adventure Game!\n You find yourself in a darkest of dungeons ...");
         IO.println("You will have to find your way out!");
         IO.println("You now stand in the first room, with these four options, you can venture north, east, west or south ... ");
@@ -18,29 +21,25 @@ public class UserInterface {
 
             switch (kommando) {
                 case "NORTH" -> {
-                    player.goNorth();
-                    IO.println("you went north");
+
                 }
                 case "EAST" -> {
 
                 }
                 case "WEST" -> {
-                    player.goWest();
-                    IO.println("you went west");
+
                 }
                 case "SOUTH" -> {
 
                 }
-                case "exit" -> {
+                case "EXIT" -> {
                     IO.print("Goodbye!");
                     gameIsRunning = false;
                 }
-                case "look" -> {
-                    Room currentRoom = player.getCurrentRoom();
-                    IO.println(currentRoom.getName());
-                    IO.println(currentRoom.getDescription());
+                case "LOOK" -> {
+                    IO.println(adventure.look());
                 }
-                case "help" -> {
+                case "HELP" -> {
                     IO.print("--- COMMANDS ---");
                     IO.print("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
                     IO.print("Type exit to exit the game");

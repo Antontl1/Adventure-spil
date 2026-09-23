@@ -2,6 +2,7 @@
 public class Adventure {
     private Room firstRoom;
 
+
     Adventure(){
         createRoomOrder();
     }
@@ -52,5 +53,9 @@ public class Adventure {
 
         room8.setRoomEast(room9);
         room9.setRoomWest(room8);
+    }
+
+    public String look(){
+        return currentRoom.getName() + "\n" + currentRoom.getDescription();
     }
 }
