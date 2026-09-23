@@ -1,5 +1,3 @@
-//Et enkelt rum. Kender sit eget navn og beskrivelse,
-//og hvilke rum der ligger mod nord, syd, øst og vest
 public class Room {
     //instansvariabeler
     //rummet skal have et navn
