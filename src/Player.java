@@ -1,8 +1,10 @@
 //Holder styr på hvilket rum spilleren står i, og flytter ham rundt
 public class Player {
+    private Player name;
     private Room currentRoom;
 
-    public Player(Room currentRoom){
+    public Player(Player name, Room currentRoom){
+        this.name = name;
         this.currentRoom = currentRoom;
     }
 
