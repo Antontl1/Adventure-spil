@@ -1,4 +1,9 @@
 public class UserInterface {
+    private Adventure adventure;
+
+    public UserInterface(Adventure adventure) {
+        this.adventure = adventure;
+    }
 
     public void runGame() {
 
@@ -32,7 +37,7 @@ public class UserInterface {
                     gameIsRunning = false;
                 }
                 case "LOOK" -> {
-
+                    IO.println(adventure.look());
                 }
                 case "HELP" -> {
                     IO.print("--- COMMANDS ---");
