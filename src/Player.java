@@ -1,3 +1,4 @@
+//Holder styr på hvilket rum spilleren står i, og flytter ham rundt
 public class Player {
     private Room currentRoom;
 
@@ -5,27 +6,33 @@ public class Player {
         this.currentRoom = currentRoom;
     }
 
+    public Room getCurrentRoom(){
+        return currentRoom;
+    }
+
+    //Prøver at flytte spilleren. Giver false hvis der ikke er noget rum den vej
     public boolean goNorth(){
-        currentRoom = currentRoom.getRoomNorth();
-        return currentRoom != null;
+        return moveTo(currentRoom.getRoomNorth());
     }
 
     public boolean goSouth(){
-        currentRoom = currentRoom.getRoomSouth();
-        return currentRoom != null;
+        return moveTo(currentRoom.getRoomSouth());
     }
 
     public boolean goEast(){
-        currentRoom = currentRoom.getRoomEast();
-        return currentRoom != null;
+        return moveTo(currentRoom.getRoomEast());
     }
 
     public boolean goWest(){
-        currentRoom = currentRoom.getRoomWest();
-        return currentRoom != null;
+        return moveTo(currentRoom.getRoomWest());
     }
 
-    public Room whereAreYou(){
-        return currentRoom;
+    //Flytter kun spilleren hvis rummet findes. Ellers bliver han stående
+    private boolean moveTo(Room room){
+        if (room == null) {
+            return false;
+        }
+        currentRoom = room;
+        return true;
     }
 }

@@ -1,12 +1,13 @@
+//Bygger kortet og ved hvilket rum spilleren starter i
 public class Adventure {
-    Room currentRoom;
+    private Room firstRoom;
 
     Adventure(){
         createRoomOrder();
     }
 
-    public Room getCurrentRoom() {
-        return currentRoom;
+    public Room getFirstRoom() {
+        return firstRoom;
     }
 
     private void createRoomOrder(){
@@ -22,7 +23,7 @@ public class Adventure {
         Room room9 = new Room("Treasure Chamber", "Gold coins glitter in the dark.");
 
         //Spilleren starter i det første rum
-        currentRoom = room1;
+        firstRoom = room1;
 
         //Forbind rummene to og to. Går man øst ind i et rum, skal man kunne gå vest tilbage igen
         room1.setRoomEast(room2);
