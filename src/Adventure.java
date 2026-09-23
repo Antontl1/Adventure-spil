@@ -1,9 +1,9 @@
 public class Adventure {
-    Room currentRoom;
+    private Room currentRoom;
 
 
     public Adventure(){
-        Player player1 = new Player("Link", currentRoom);
+        this.currentRoom = getCurrentRoom();
         createRoomOrder();
     }
 

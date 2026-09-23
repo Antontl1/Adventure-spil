@@ -1,8 +1,10 @@
 public class UserInterface {
     private Adventure adventure;
+    private Player player1;
 
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
+        this.player1 = player1;
     }
 
     public void runGame() {
