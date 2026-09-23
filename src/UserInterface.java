@@ -45,10 +45,10 @@ public class UserInterface {
                     IO.println(adventure.look());
                 }
                 case "HELP" -> {
-                    IO.print("--- COMMANDS ---");
-                    IO.print("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
-                    IO.print("Type EXIT to exit the game");
-                    IO.print("Type LOOK for taking look around the room you currently standing in");
+                    IO.println("--- COMMANDS ---");
+                    IO.println("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
+                    IO.println("Type EXIT to exit the game");
+                    IO.println("Type LOOK for taking look around the room you currently standing in");
                 }
             }
         }
