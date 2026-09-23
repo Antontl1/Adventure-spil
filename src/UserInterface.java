@@ -25,27 +25,35 @@ public class UserInterface {
             switch (kommando) {
                 case "NORTH" -> {
                     if (adventure.goNorth() == false) {
-                        IO.println("A wall is infront of you, you can't go that way");
+                        IO.println("A wall is infront of you. You can't go that way");
                     } else {
-                        adventure.goNorth();
                         IO.println("You find yourself in ...");
                         IO.println(adventure.look());
                     }
                 }
                 case "EAST" -> {
                     if (adventure.goEast() == false) {
-                        IO.println("A wall is infront of you, you can't go that way");
+                        IO.println("A wall is infront of you. You can't go that way");
                     } else {
-                        adventure.goEast();
                         IO.println("You find yourself in ...");
                         IO.println(adventure.look());
                     }
                 }
                 case "WEST" -> {
-
+                    if (adventure.goWest() == false) {
+                        IO.println("A wall is infront of you. You can't go that way");
+                    } else {
+                        IO.println("You find yourself in ...");
+                        IO.println(adventure.look());
+                    }
                 }
                 case "SOUTH" -> {
-
+                    if (adventure.goSouth() == false) {
+                        IO.println("A wall is infront of you. You can't go that way");
+                    } else {
+                        IO.println("You find yourself in ...");
+                        IO.println(adventure.look());
+                    }
                 }
                 case "EXIT" -> {
                     IO.print("Goodbye!");
