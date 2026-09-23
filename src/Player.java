@@ -1,7 +1,9 @@
 public class Player {
+    private Player name;
     private Room currentRoom;
 
-    public Player(Room currentRoom){
+    public Player(Player name, Room currentRoom){
+        this.name = name;
         this.currentRoom = currentRoom;
     }
 

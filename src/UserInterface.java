@@ -27,14 +27,14 @@ public class UserInterface {
                 case "SOUTH" -> {
 
                 }
-                case "exit" -> {
+                case "EXIT" -> {
                     IO.print("Goodbye!");
                     gameIsRunning = false;
                 }
-                case "look" -> {
+                case "LOOK" -> {
 
                 }
-                case "help" -> {
+                case "HELP" -> {
                     IO.print("--- COMMANDS ---");
                     IO.print("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
                     IO.print("Type exit to exit the game");
