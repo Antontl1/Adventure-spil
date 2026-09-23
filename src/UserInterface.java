@@ -1,8 +1,10 @@
 public class UserInterface {
     private Adventure adventure;
+    private Player player1;
 
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
+        this.player1 = player1;
     }
 
 
@@ -23,16 +25,16 @@ public class UserInterface {
             String kommando = IO.readln();
 
             switch (kommando) {
-                case "NORTH" -> {
+                case "NORTH" -> { player1.goNorth();
 
                 }
-                case "EAST" -> {
+                case "EAST" -> { player1.goEast();
 
                 }
-                case "WEST" -> {
+                case "WEST" -> { player1.goWest();
 
                 }
-                case "SOUTH" -> {
+                case "SOUTH" -> { player1.goSouth();
 
                 }
                 case "EXIT" -> {
@@ -43,10 +45,10 @@ public class UserInterface {
                     IO.println(adventure.look());
                 }
                 case "HELP" -> {
-                    IO.print("--- COMMANDS ---");
-                    IO.print("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
-                    IO.print("Type EXIT to exit the game");
-                    IO.print("Type LOOK for taking look around the room you currently standing in");
+                    IO.println("--- COMMANDS ---");
+                    IO.println("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
+                    IO.println("Type EXIT to exit the game");
+                    IO.println("Type LOOK for taking look around the room you currently standing in");
                 }
             }
         }
