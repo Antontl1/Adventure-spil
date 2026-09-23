@@ -1,66 +1,48 @@
-//Styrer selve spillet: skriver beskeder ud, læser brugerens kommandoer
-//og holder spillet i gang indtil spilleren vælger at stoppe
 public class UserInterface {
 
-    public void startGame() {
-        //Bygger rummene og holder styr på hvilket rum spilleren er i
-        Adventure adventure = new Adventure();
-        Room theFirstRoom = adventure.getFirstRoom();
-        Player player = new Player(theFirstRoom);
-        //Vurderer om spillet stadig er i gang
-        boolean gameIsOver = false;
-        IO.println("Welcome to Adventure! You are standing in the first room and can walk between the rooms.");
-        IO.println("You can play the game using a few simple commands:");
-        IO.println("Type LOOK to look around, NORTH, SOUTH, EAST or WEST to go that way, and EXIT to quit the game: ");
+    public void runGame() {
 
-        //mens boolean er true
-        while (!gameIsOver) {
+        boolean gameIsRunning = true;
 
-            //Læser en linje fra brugeren. Der skal skrives med STORE bogstaver for at ramme en case
-            String command = IO.readln();
+        IO.println("Welcome to The Adventure Game!\n You find yourself in a darkest of dungeons ...");
+        IO.println("You will have to find your way out!");
+        IO.println("You now stand in the first room, with these four options, you can venture north, east, west or south ... ");
+        IO.println("Write NORTH for north, EAST for eat, WEST for west and SOUTH for south to choose you next move");
+        IO.println("Which will it be ... ?");
 
-            //Menu med valgmuligheder der tager parameteret command til at vælge en mulighed
-            switch (command) {
-                case "LOOK" -> {
-                    //Spørger Player hvilket rum han står i, og henter navn og beskrivelse ud af rummet
-                    Room currentRoom = player.getCurrentRoom();
-                    IO.println(currentRoom.getName());
-                    IO.println(currentRoom.getDescription());
-                }
+        while (gameIsRunning) {
+
+            String kommando = IO.readln();
+
+            switch (kommando) {
                 case "NORTH" -> {
-                    if (player.goNorth()) {
-                        IO.println("You go north.");
-                    } else {
-                        IO.println("You cannot go north from here. Try another way.");
-                    }
-                }
-                case "SOUTH" -> {
-                    if (player.goSouth()) {
-                        IO.println("You go south.");
-                    } else {
-                        IO.println("You cannot go south from here. Try another way.");
-                    }
+
                 }
                 case "EAST" -> {
-                    if (player.goEast()) {
-                        IO.println("You go east.");
-                    } else {
-                        IO.println("You cannot go east from here. Try another way.");
-                    }
+
                 }
                 case "WEST" -> {
-                    if (player.goWest()) {
-                        IO.println("You go west.");
-                    } else {
-                        IO.println("You cannot go west from here. Try another way.");
-                    }
+
                 }
-                case "EXIT" -> {
-                    IO.println("Thanks for playing!");
-                    gameIsOver = true;
+                case "SOUTH" -> {
+
+                }
+                case "exit" -> {
+                    IO.print("Goodbye!");
+                    gameIsRunning = false;
+                }
+                case "look" -> {
+
+                }
+                case "help" -> {
+                    IO.print("--- COMMANDS ---");
+                    IO.print("Type NORTH, EAST, WEST or SOUTH for the direction you want to go");
+                    IO.print("Type exit to exit the game");
+                    IO.print("Type look for taking look around the room you currently standing in");
                 }
             }
         }
 
     }
+
 }

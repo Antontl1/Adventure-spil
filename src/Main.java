@@ -1,4 +1,4 @@
 void main() {
     UserInterface userInterface = new UserInterface();
-    userInterface.startGame();
+    userInterface.runGame();
 }
