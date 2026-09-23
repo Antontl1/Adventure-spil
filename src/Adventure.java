@@ -1,14 +1,33 @@
-//Bygger kortet og ved hvilket rum spilleren starter i
+//Bygger kortet og ejer spilleren. Er bindeled mellem UserInterface og resten af spillet
 public class Adventure {
     private Room firstRoom;
-
+    private Player player;
 
     Adventure(){
         createRoomOrder();
+        //Spilleren sættes ind i det første rum, når kortet er bygget
+        player = new Player(firstRoom);
     }
 
     public Room getFirstRoom() {
         return firstRoom;
+    }
+
+    //Prøver at flytte spilleren. Giver false hvis der ikke er noget rum den vej
+    public boolean goNorth(){
+        return player.goNorth();
+    }
+
+    public boolean goSouth(){
+        return player.goSouth();
+    }
+
+    public boolean goEast(){
+        return player.goEast();
+    }
+
+    public boolean goWest(){
+        return player.goWest();
     }
 
     private void createRoomOrder(){
@@ -55,7 +74,9 @@ public class Adventure {
         room9.setRoomWest(room8);
     }
 
+    //Spørger spilleren hvor han står, og laver rummets navn og beskrivelse om til én tekst
     public String look(){
+        Room currentRoom = player.getCurrentRoom();
         return currentRoom.getName() + "\n" + currentRoom.getDescription();
     }
 }

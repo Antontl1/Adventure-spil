@@ -5,6 +5,7 @@ public class UserInterface {
         this.adventure = adventure;
     }
 
+
     public void runGame() {
 
         boolean gameIsRunning = true;
