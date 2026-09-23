@@ -24,16 +24,22 @@ public class UserInterface {
 
             switch (kommando) {
                 case "NORTH" -> {
-                    adventure.goNorth();
-                    IO.println();
-                    IO.println(adventure.look());
-
+                    if (adventure.goNorth() == false) {
+                        IO.println("A wall is infront of you, you can't go that way");
+                    } else {
+                        adventure.goNorth();
+                        IO.println("You find yourself in ...");
+                        IO.println(adventure.look());
+                    }
                 }
                 case "EAST" -> {
-                    adventure.goEast();
-                    IO.println();
-                    IO.println(adventure.look());
-
+                    if (adventure.goEast() == false) {
+                        IO.println("A wall is infront of you, you can't go that way");
+                    } else {
+                        adventure.goEast();
+                        IO.println("You find yourself in ...");
+                        IO.println(adventure.look());
+                    }
                 }
                 case "WEST" -> {
 
