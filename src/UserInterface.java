@@ -1,9 +1,11 @@
 public class UserInterface {
 
     public void runGame() {
+        Adventure adventure = new Adventure();
+        Room theFirstRoom = adventure.getFirstRoom();
+        Player player = new Player(theFirstRoom);
 
         boolean gameIsRunning = true;
-
         IO.println("Welcome to The Adventure Game!\n You find yourself in a darkest of dungeons ...");
         IO.println("You will have to find your way out!");
         IO.println("You now stand in the first room, with these four options, you can venture north, east, west or south ... ");
@@ -16,13 +18,15 @@ public class UserInterface {
 
             switch (kommando) {
                 case "NORTH" -> {
-
+                    player.goNorth();
+                    IO.println("you went north");
                 }
                 case "EAST" -> {
 
                 }
                 case "WEST" -> {
-
+                    player.goWest();
+                    IO.println("you went west");
                 }
                 case "SOUTH" -> {
 
@@ -32,7 +36,9 @@ public class UserInterface {
                     gameIsRunning = false;
                 }
                 case "look" -> {
-
+                    Room currentRoom = player.getCurrentRoom();
+                    IO.println(currentRoom.getName());
+                    IO.println(currentRoom.getDescription());
                 }
                 case "help" -> {
                     IO.print("--- COMMANDS ---");
