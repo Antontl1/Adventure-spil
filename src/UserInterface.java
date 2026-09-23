@@ -24,9 +24,15 @@ public class UserInterface {
 
             switch (kommando) {
                 case "NORTH" -> {
+                    adventure.goNorth();
+                    IO.println();
+                    IO.println(adventure.look());
 
                 }
                 case "EAST" -> {
+                    adventure.goEast();
+                    IO.println();
+                    IO.println(adventure.look());
 
                 }
                 case "WEST" -> {
