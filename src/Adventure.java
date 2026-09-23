@@ -2,7 +2,8 @@ public class Adventure {
     Room currentRoom;
 
 
-    Adventure(){
+    public Adventure(){
+        Player player1 = new Player("Link", currentRoom);
         createRoomOrder();
     }
 

@@ -1,8 +1,8 @@
 public class Player {
-    private Player name;
+    private String name;
     private Room currentRoom;
 
-    public Player(Player name, Room currentRoom){
+    public Player(String name, Room currentRoom){
         this.name = name;
         this.currentRoom = currentRoom;
     }
