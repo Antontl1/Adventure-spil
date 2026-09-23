@@ -1,10 +1,8 @@
 public class UserInterface {
     private Adventure adventure;
-    private Player player1;
 
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
-        this.player1 = player1;
     }
 
 
@@ -25,16 +23,16 @@ public class UserInterface {
             String kommando = IO.readln();
 
             switch (kommando) {
-                case "NORTH" -> { player1.goNorth();
+                case "NORTH" -> {
 
                 }
-                case "EAST" -> { player1.goEast();
+                case "EAST" -> {
 
                 }
-                case "WEST" -> { player1.goWest();
+                case "WEST" -> {
 
                 }
-                case "SOUTH" -> { player1.goSouth();
+                case "SOUTH" -> {
 
                 }
                 case "EXIT" -> {
