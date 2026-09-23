@@ -23,7 +23,7 @@ public class UserInterface {
             String kommando = IO.readln();
 
             switch (kommando) {
-                case "NORTH" -> {
+                case "GO NORTH" -> {
                     if (adventure.goNorth() == false) {
                         IO.println("A wall is infront of you. You can't go that way");
                     } else {
@@ -31,7 +31,7 @@ public class UserInterface {
                         IO.println(adventure.look());
                     }
                 }
-                case "EAST" -> {
+                case "GO EAST" -> {
                     if (adventure.goEast() == false) {
                         IO.println("A wall is infront of you. You can't go that way");
                     } else {
@@ -39,7 +39,7 @@ public class UserInterface {
                         IO.println(adventure.look());
                     }
                 }
-                case "WEST" -> {
+                case "GO WEST" -> {
                     if (adventure.goWest() == false) {
                         IO.println("A wall is infront of you. You can't go that way");
                     } else {
@@ -47,7 +47,7 @@ public class UserInterface {
                         IO.println(adventure.look());
                     }
                 }
-                case "SOUTH" -> {
+                case "GO SOUTH" -> {
                     if (adventure.goSouth() == false) {
                         IO.println("A wall is infront of you. You can't go that way");
                     } else {
