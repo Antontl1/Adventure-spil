@@ -2,13 +2,11 @@
 public class Player {
     //Instansvariabler
     //Spilleren skal have et navn
-    private Player name;
     //Skal være et sted
     private Room currentRoom;
 
     //Konstruktør til at oprette spiller
     public Player(Room currentRoom){
-        this.name = name;
         this.currentRoom = currentRoom;
     }
     //Metode til at få det rum hvor spilleren er
