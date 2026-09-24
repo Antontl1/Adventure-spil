@@ -12,7 +12,7 @@ public class UserInterface {
         //sætter gaming is running til at spillet kører ie. true
         boolean gameIsRunning = true;
 
-        IO.println("Welcome to The Adventure Game!\n You find yourself in a darkest of dungeons ...");
+        IO.println("Welcome to The Adventure Game! You find yourself in a darkest of dungeons ...");
         IO.println("You will have to find your way out!");
         IO.println("You now stand in the first room, with these four options, you can venture north, east, west or south ... ");
         IO.println("Write GO NORTH for north, GO EAST for east, GO WEST for west and GO SOUTH for south to choose you next move");
