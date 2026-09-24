@@ -24,55 +24,35 @@ public class UserInterface {
             String kommando = IO.readln();
 
             switch (kommando) {
-                case "GO NORTH", "NORTH","north","n"  -> {
-                    if (adventure.goNorth() == false) {
-                        IO.println("A wall is infront of you. You can't go that way");
-                    } else {
-                        IO.println("You find yourself in ...");
-                        IO.println(adventure.look());
-                    }
-                }
-                case "GO EAST", "EAST","east","e" -> {
-                    if (adventure.goEast() == false) {
-                        IO.println("A wall is infront of you. You can't go that way");
-                    } else {
-                        IO.println("You find yourself in ...");
-                        IO.println(adventure.look());
-                    }
-                }
-                case "GO WEST", "WEST","west","w" -> {
-                    if (adventure.goWest() == false) {
-                        IO.println("A wall is infront of you. You can't go that way");
-                    } else {
-                        IO.println("You find yourself in ...");
-                        IO.println(adventure.look());
-                    }
-                }
-                case "GO SOUTH", "SOUTH","south","s" -> {
-                    if (adventure.goSouth() == false) {
-                        IO.println("A wall is infront of you. You can't go that way");
-                    } else {
-                        IO.println("You find yourself in ...");
-                        IO.println(adventure.look());
-                    }
-                }
-                case "EXIT","exit" -> {
-                    IO.print("Goodbye!");
-                    //afslutter spillet ved at sætte game is running til false
-                    gameIsRunning = false;
-                }
-                case "LOOK","look","l" -> {
-                    IO.println(adventure.look());
-                }
-                case "HELP","help","h" -> {
-                    IO.println("--- COMMANDS ---");
-                    IO.println("Type GO NORTH, GO EAST, GO WEST or GO SOUTH for the direction you want to go");
-                    IO.println("Type EXIT to exit the game");
-                    IO.println("Type LOOK for taking look around the room you currently standing in");
+                case "GO NORTH", "N" -> tryMove(adventure.goNorth());
+                case "GO EAST", "E" -> tryMove(adventure.goEast());
+                case "GO WEST", "W" -> tryMove(adventure.goWest());
+                case "GO SOUTH", "S" -> tryMove(adventure.goSouth());
+
+                case "LOOK" -> IO.println(adventure.look());
+
+                case "HELP" -> showHelp();
                 }
             }
         }
-
+    private void tryMove(boolean success) {
+        if (!success) {
+            IO.println("A wall is in front of you. You can't go that way.");
+        } else {
+            IO.println("You find yourself in ...");
+            IO.println(adventure.look());
+        }
     }
-
+    private void showHelp() {
+        IO.println("""
+                --- COMMANDS ---
+                • GO NORTH / GO EAST / GO WEST / GO SOUTH (eller N, E, W, S)
+                • LOOK : Take a look around the current room
+                • HELP : Show this menu
+                • EXIT : Exit the game
+                """);
+    }
 }
+    
+
+
