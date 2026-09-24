@@ -1,7 +1,6 @@
 //Holder styr på hvilket rum spilleren står i, og flytter ham rundt
 public class Player {
     //Instansvariabler
-    //Spilleren skal have et navn
     //Skal være et sted
     private Room currentRoom;
 

@@ -56,15 +56,15 @@ public class UserInterface {
                         IO.println(adventure.look());
                     }
                 }
-                case "EXIT" -> {
+                case "EXIT","exit" -> {
                     IO.print("Goodbye!");
                     //afslutter spillet ved at sætte game is running til false
                     gameIsRunning = false;
                 }
-                case "LOOK" -> {
+                case "LOOK","look","l" -> {
                     IO.println(adventure.look());
                 }
-                case "HELP" -> {
+                case "HELP","help","h" -> {
                     IO.println("--- COMMANDS ---");
                     IO.println("Type GO NORTH, GO EAST, GO WEST or GO SOUTH for the direction you want to go");
                     IO.println("Type EXIT to exit the game");
