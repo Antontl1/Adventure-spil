@@ -31,10 +31,10 @@ public class UserInterface {
             String kommando = parts[0].toUpperCase();
             String argument = parts.length > 1 ? parts[1] : "";
             switch (kommando) {
-                case "GO NORTH", "N" -> tryMove(adventure.goNorth());
-                case "GO EAST", "E" -> tryMove(adventure.goEast());
-                case "GO WEST", "W" -> tryMove(adventure.goWest());
-                case "GO SOUTH", "S" -> tryMove(adventure.goSouth());
+                case "N" -> tryMove(adventure.goNorth());
+                case "E" -> tryMove(adventure.goEast());
+                case "W" -> tryMove(adventure.goWest());
+                case "S" -> tryMove(adventure.goSouth());
 
                 case "LOOK" -> IO.println(adventure.look());
 

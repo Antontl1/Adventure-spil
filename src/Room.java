@@ -20,10 +20,12 @@ public class Room {
         this.name = name;
         this.description = description;
     }
+
     //Metode til at få navnet på et rum, bruges i look metoden i Adventure
     public String getName() {
         return name;
     }
+
     //Metode til at få beskrivelse på et rum, bruges i look metoden i Adventure
     public String getDescription() {
         return description;
