@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class UserInterface {
     //Instansvariabel så alle metoder i klassen kan nå spillet.
     private Adventure adventure;
@@ -51,8 +53,10 @@ public class UserInterface {
         } else {
             IO.println("You find yourself in ...");
             IO.println(adventure.look());
+            IO.println("The room has a " + adventure.getRoomItems());
         }
     }
+
     // Udskriver rummets beskrivelse OG items i rummet
     //Som showInventory, men på rummets liste. Kaldes ikke endnu: LOOK bruger kun adventure.look()
     private void showRoomDescription() {
