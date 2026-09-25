@@ -17,10 +17,12 @@ public class Item {
         return longName;
     }
 
-    public String getItemDescription(){
+    public String getItemDescription() {
         return itemDescription;
     }
-    public String toString(){
-        return String.format("%s. %s. %s",shortName,longName, itemDescription);
+
+    @Override
+    public String toString() {
+        return String.format("%s. %s. %s", shortName, longName, itemDescription);
     }
 }
