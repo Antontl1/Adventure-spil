@@ -3,10 +3,10 @@ public class Item {
     private String longName;
     private String itemDescription;
 
-    public Item(String shortName, String longName, String itemDescription) {
+    public Item(String shortName, String longName) {
         this.shortName = shortName;
         this.longName = longName;
-        this.itemDescription = itemDescription;
+//        this.itemDescription = itemDescription;
     }
 
     public String getShortName() {

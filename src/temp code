@@ -1,0 +1,8 @@
+Item lamp = new Item("lamp", "a shiny brass lamp");
+        Item coins = new Item("coins", "some gold coins");
+        Item sword = new Item("sword", "an old rusty sword");
+
+        // Add items to rooms
+        room1.addItem(lamp);
+        room1.addItem(coins);
+        room2.addItem(sword);

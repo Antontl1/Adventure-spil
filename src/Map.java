@@ -15,15 +15,15 @@ public class Map {
         Room room8 = new Room("Hallway", "A long hallway lit by torches.");
         Room room9 = new Room("Treasure Chamber", "Gold coins glitter in the dark.");
 
-        Item item1 = new Item("rod","An iron rod","It's hanging next to the mantelpiece. Still a little warm from the last fire"); //Entrance Hall
-        Item item2 = new Item("book","The Holy Bible","It's very worn out. May the lord show me the way through these rooms"); //Library
-        Item item3 = new Item("sword","A Royal Sword","It features a purple handle and triangular crest markings on the blade"); //Armoury
-        Item item4 = new Item("bread","A moldy loaf corn bread","It seems like the rats have already taken a few bites"); //Kitchen
-        Item item5 = new Item("crown","A royal crown","It is fitted with large beautiful gem stones"); //throne room
-        Item item6 = new Item("dead rat","A stinky dead rat","It smells awful and is probably filled with diseases"); //Dungeon
-        Item item7 = new Item("bottle","Bottle of water","Probably from the fountain before it dried out"); //Garden
-        Item item8 = new Item("torch","A small torch","Currently not lit"); //Hallway
-        Item item9 = new Item("some coins","a couple of gold coins","They seem worn down but still shiny"); //treasure chamber
+        Item item1 = new Item("Iron rod","Fireplace iron rod","An iron rod hanging next to the mantelpiece. Still a little warm from the last fire"); //Entrance Hall
+        Item item2 = new Item("Bible","The Holy Bible","A very worn out copy of the holy bible. May the lord show me the way through these rooms"); //Library
+        Item item3 = new Item("Sword","The Royal Sword","A large shining royal sword hanging on the wall. It features a purple handle and triangular crest markings on the blade"); //Armoury
+        Item item4 = new Item("Bread","Moldy corn bread","A moldy lof of corn bread. Seems like the rats have already taken a few bites"); //Kitchen
+        Item item5 = new Item("Crown","The royal crown","A shiny gold crown. It is fitted with large beautiful gem stones"); //throne room
+        Item item6 = new Item("Dead rat","The stinky dead rat","A stinking dead rat. It smells awful and probably filled with diseases"); //Dungeon
+        Item item7 = new Item("Bottle","Bottle of water","A bottle filled water. Probably from the fountain before it dried out"); //Garden
+        Item item8 = new Item("Torch","The small torch","A small torch lying on the floor. Currently it not lit"); //Hallway
+        Item item9 = new Item("Coins","Gold Coins","A small stack of gold coins. They seem worn down but still shiny"); //treasure chamber
 
         room1.addItem(item1);
         room2.addItem(item2);

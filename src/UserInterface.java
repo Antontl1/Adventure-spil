@@ -38,7 +38,7 @@ public class UserInterface {
 
                 case "LOOK" -> IO.println(adventure.look());
 
-                case "take"-> handleTake(argument);
+                case "TAKE"-> handleTake(argument);
                 case "DROP" -> handleDrop(argument);
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
@@ -126,6 +126,9 @@ public class UserInterface {
                 --- COMMANDS ---
                 • GO NORTH / GO EAST / GO WEST / GO SOUTH (eller N, E, W, S)
                 • LOOK : Take a look around the current room you find yourself in
+                • TAKE : TAKES ROOM ITEM
+                • DROP : DROPS ITEM FROM INVENTORY
+                • INVENTORY/ INV /INVENT(DISPLAYS INVENTORY)
                 • HELP : Show this menu again if you forget your commands
                 • EXIT : Exits the game
                 """);
