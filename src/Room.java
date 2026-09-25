@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Room {
     //instansvariabeler
     //rummet skal have et navn
@@ -10,6 +12,8 @@ public class Room {
     private Room south;
     private Room east;
     private Room west;
+    //De ting der ligger i rummet. Fyldes i createRoomOrder i Adventure
+    private ArrayList<Item> inventory = new ArrayList<>();
 
     //konstruktør for rum, bruges i Adventure til at oprette rum
     public Room(String name, String description) {
@@ -57,5 +61,31 @@ public class Room {
 
     public Room setRoomWest(Room room) {
         return this.west = room;
+    }
+
+    // --- ITEMS I RUMMET ---
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
+    }
+
+    //Bruges både når kortet bygges, og når spilleren lægger noget fra sig med dropItem()
+    public void addItem(Item item) {
+        inventory.add(item);
+    }
+
+    //Bruges når spilleren samler noget op med takeItem()
+    public void removeItem(Item item) {
+        inventory.remove(item);
+    }
+
+    //Leder efter en ting på dens korte navn, altså det spilleren skriver. Giver null hvis den ikke ligger her
+    public Item findItem(String itemName) {
+        for (Item item : inventory) {
+            if (item.getShortName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 }

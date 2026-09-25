@@ -1,8 +1,11 @@
+import java.util.ArrayList;
 //Holder styr på hvilket rum spilleren står i, og flytter ham rundt
 public class Player {
     //Instansvariabler
     //Skal være et sted
     private Room currentRoom;
+    //De ting spilleren bærer rundt på. Tom fra start, og fyldes af takeItem()
+    private ArrayList<Item> inventory = new ArrayList<>();
 
     //Konstruktør til at oprette spiller
     public Player(Room currentRoom){
