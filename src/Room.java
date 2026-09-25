@@ -1,61 +1,60 @@
-public class Room {
-    //instansvariabeler
-    //rummet skal have et navn
-    private String name;
-    //en beskrivelse
-    private String description;
-    //og fire naboer: rummene der ligger mod nord, syd, øst og vest.
-    //De er null indtil Adventure sætter dem, og null betyder "ingen dør den vej"
-    private Room north;
-    private Room south;
-    private Room east;
-    private Room west;
+import java.util.ArrayList;
 
-    //konstruktør for rum, bruges i Adventure til at oprette rum
+public class Room {
+    private String name;
+    private String description;
+
+    // Directional connections (null means no door)
+    private Room north, south, east, west;
+
+    // List of items currently lying in this room
+    private ArrayList<Item> items = new ArrayList<>();
+
     public Room(String name, String description) {
         this.name = name;
         this.description = description;
     }
-    //Metode til at få navnet på et rum, bruges i look metoden i Adventure
-    public String getName() {
-        return name;
-    }
-    //Metode til at få beskrivelse på et rum, bruges i look metoden i Adventure
-    public String getDescription() {
-        return description;
+
+    // --- ITEM METHODS ---
+
+    public void addItem(Item item) {
+        items.add(item);
     }
 
-    //Setterne bruges kun én gang, i createRoomOrder i Adventure, hvor kortet bygges.
-    //Getterne bruges hver gang spilleren går: Player spørger sit nuværende rum hvem naboen er den vej, og flytter kun hvis svaret ikke er null
-    public Room setRoomNorth(Room room) {
-        return this.north = room;
+    public void removeItem(Item item) {
+        items.remove(item);
     }
 
-    public Room getRoomNorth() {
-        return north;
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
-    public Room getRoomSouth() {
-        return south;
+    // Search for an item by its short name
+    public Item findItem(String itemName) {
+        for (Item item : items) {
+            if (item.getShortName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null; // Item not found
     }
 
-    public Room setRoomSouth(Room room) {
-        return this.south = room;
-    }
+    // --- ROOM INFORMATION ---
 
-    public Room getRoomEast() {
-        return east;
-    }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
 
-    public Room setRoomEast(Room room) {
-        return this.east = room;
-    }
+    // --- NAVIGATION GETTERS & SETTERS ---
 
-    public Room getRoomWest() {
-        return west;
-    }
+    public Room getRoomNorth() { return north; }
+    public void setRoomNorth(Room room) { this.north = room; }
 
-    public Room setRoomWest(Room room) {
-        return this.west = room;
-    }
+    public Room getRoomSouth() { return south; }
+    public void setRoomSouth(Room room) { this.south = room; }
+
+    public Room getRoomEast() { return east; }
+    public void setRoomEast(Room room) { this.east = room; }
+
+    public Room getRoomWest() { return west; }
+    public void setRoomWest(Room room) { this.west = room; }
 }
