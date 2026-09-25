@@ -38,7 +38,7 @@ public class UserInterface {
 
                 case "LOOK" -> IO.println(adventure.look());
 
-                case "take"-> handleTake(argument);
+                case "TAKE"-> handleTake(argument);
                 case "DROP" -> handleDrop(argument);
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
