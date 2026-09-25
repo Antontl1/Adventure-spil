@@ -21,8 +21,13 @@ public class UserInterface {
         while (gameIsRunning) {
 
             //Brugeren kan skrive en kommando der bliver pases som et parameter til switch
-            String kommando = IO.readln();
+            String input = IO.readln().trim();
+            if (input.isEmpty()) continue;
 
+            // Deler input op i kommando og argument (f.eks. "take" og "lamp")
+            String[] parts = input.split(" ", 2);
+            String kommando = parts[0].toUpperCase();
+            String argument = parts.length > 1 ? parts[1] : "";
             switch (kommando) {
                 case "GO NORTH", "N" -> tryMove(adventure.goNorth());
                 case "GO EAST", "E" -> tryMove(adventure.goEast());
@@ -30,6 +35,10 @@ public class UserInterface {
                 case "GO SOUTH", "S" -> tryMove(adventure.goSouth());
 
                 case "LOOK" -> IO.println(adventure.look());
+
+                case "take"-> handleTake(argument);
+                case "DROP" -> handleDrop(argument);
+                case "INVENTORY", "INV", "INVENT" -> showInventory();
 
                 case "HELP" -> showHelp();
                 }
@@ -41,6 +50,59 @@ public class UserInterface {
         } else {
             IO.println("You find yourself in ...");
             IO.println(adventure.look());
+        }
+    }
+    // Udskriver rummets beskrivelse OG items i rummet
+    private void showRoomDescription() {
+        IO.println(adventure.look());
+
+        // Henter listen af items fra det nuværende rum
+        var items = adventure.getRoomItems();
+        if (items.isEmpty()) {
+            IO.println("There are no items here.");
+        } else {
+            IO.println("Here you see:");
+            for (Item item : items) {
+                IO.println("- " + item.getLongName());
+            }
+        }
+    }
+
+    private void handleTake(String itemName) {
+        if (itemName.isEmpty()) {
+            IO.println("What do you want to take?");
+            return;
+        }
+
+        Item item = adventure.takeItem(itemName);
+        if (item != null) {
+            IO.println("You have taken the " + item.getShortName());
+        } else {
+            IO.println("There is nothing like " + itemName + " to take around here");
+        }
+    }
+    private void handleDrop(String itemName) {
+        if (itemName.isEmpty()) {
+            IO.println("What do you want to drop?");
+            return;
+        }
+
+        Item item = adventure.dropItem(itemName);
+        if (item != null) {
+            IO.println("You have dropped the " + item.getShortName());
+        } else {
+            IO.println("You don't have anything like " + itemName + " in your inventory");
+        }
+    }
+    private void showInventory() {
+        var inventory = adventure.getPlayerInventory();
+        if (inventory.isEmpty()) {
+            IO.println("Your inventory is empty.");
+        } else {
+            IO.println("You are carrying:");
+            for (Item item : inventory) {
+                IO.println("- " + item.getLongName());
+            }
         }
     }
     private void showHelp() {
