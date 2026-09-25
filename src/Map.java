@@ -22,7 +22,7 @@ public class Map {
         Item item5 = new Item("crown","A royal crown","It is fitted with large beautiful gem stones"); //throne room
         Item item6 = new Item("dead rat","A stinky dead rat","It smells awful and probably filled with diseases"); //Dungeon
         Item item7 = new Item("bottle","A bottle of water","Probably from the fountain before it dried out"); //Garden
-        Item item8 = new Item("torch","A small torch","Currently it not lit"); //Hallway
+        Item item8 = new Item("torch","A small torch","Currently it's not lit"); //Hallway
         Item item9 = new Item("coins","a couple of gold coins","They seem worn down but still shiny"); //treasure chamber
 
         room1.addItem(item1);
