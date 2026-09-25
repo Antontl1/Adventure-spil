@@ -109,9 +109,9 @@ public class UserInterface {
         IO.println("""
                 --- COMMANDS ---
                 • GO NORTH / GO EAST / GO WEST / GO SOUTH (eller N, E, W, S)
-                • LOOK : Take a look around the current room
-                • HELP : Show this menu
-                • EXIT : Exit the game
+                • LOOK : Take a look around the current room you find yourself in
+                • HELP : Show this menu again if you forget your commands
+                • EXIT : Exits the game
                 """);
     }
 }
