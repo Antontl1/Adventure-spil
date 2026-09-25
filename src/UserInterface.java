@@ -44,6 +44,7 @@ public class UserInterface {
                 }
             }
         }
+
     private void tryMove(boolean success) {
         if (!success) {
             IO.println("A wall is in front of you. You can't go that way.");
@@ -53,6 +54,7 @@ public class UserInterface {
         }
     }
     // Udskriver rummets beskrivelse OG items i rummet
+    //Som showInventory, men på rummets liste. Kaldes ikke endnu: LOOK bruger kun adventure.look()
     private void showRoomDescription() {
         IO.println(adventure.look());
 
@@ -68,6 +70,8 @@ public class UserInterface {
         }
     }
 
+    //Håndterer TAKE. itemName er ordet efter kommandoen, f.eks. "lamp".
+    //Flytter tingen fra rummet til spilleren. null betyder at den ikke lå i rummet
     private void handleTake(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to take?");
@@ -81,6 +85,9 @@ public class UserInterface {
             IO.println("There is nothing like " + itemName + " to take around here");
         }
     }
+    
+    //Som handleTake, bare den anden vej: tingen lægges i rummet og kan samles op igen.
+    //null betyder at spilleren ikke havde den
     private void handleDrop(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to drop?");
@@ -94,6 +101,9 @@ public class UserInterface {
             IO.println("You don't have anything like " + itemName + " in your inventory");
         }
     }
+
+    //Viser hvad spilleren bærer på. Den tomme liste fanges for sig,
+    //ellers ville man få en overskrift uden noget under
     private void showInventory() {
         var inventory = adventure.getPlayerInventory();
         if (inventory.isEmpty()) {
