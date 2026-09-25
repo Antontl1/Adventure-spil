@@ -28,7 +28,7 @@ public class Adventure {
 
     // Henter listen af ting der ligger i det rum spilleren står i
     public ArrayList<Item> getRoomItems() {
-        return player.getCurrentRoom().getItems();
+        return player.getCurrentRoom().getInventory();
     }
 
     //Metoder til at gå en retning. De laver ikke selv arbejdet, men sender beskeden videre
