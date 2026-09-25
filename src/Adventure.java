@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// Bygger kortet og ejer spilleren. Er bindeled mellem UserInterface og resten af spillet
 public class Adventure {
     private Player player;
 
@@ -8,22 +9,27 @@ public class Adventure {
         player = new Player(map.getFirstRoom());
     }
 
+    // Beder player om at tage en ting fra det nuværende rum
     public Item takeItem(String itemName) {
         return player.takeItem(itemName);
     }
 
+    // Beder player om at smide en ting i det nuværende rum
     public Item dropItem(String itemName) {
         return player.dropItem(itemName);
     }
 
+    // Henter listen af ting som spilleren bærer på
     public ArrayList<Item> getPlayerInventory() {
         return player.getInventory();
     }
 
-    public Room getCurrentRoom() {
-        return player.getCurrentRoom();
+    // Henter listen af ting der ligger i det rum spilleren står i
+    public ArrayList<Item> getRoomItems() {
+        return player.getCurrentRoom().getInventory();
     }
 
+    // Metoder til at gå en retning
     public boolean goNorth() {
         return player.goNorth();
     }
@@ -40,7 +46,12 @@ public class Adventure {
         return player.goWest();
     }
 
+    // Henter rummets navn, beskrivelse, udgange og genstande
     public String look() {
-        return player.getCurrentRoom().getFullDescription();
+        Room currentRoom = player.getCurrentRoom();
+        return currentRoom.getName() + "\n" +
+                currentRoom.getDescription() + "\n" +
+                currentRoom.getExits() + "\n\n" +
+                currentRoom.getFormattedItems();
     }
 }
