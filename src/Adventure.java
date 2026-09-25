@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 //Bygger kortet og ejer spilleren. Er bindeled mellem UserInterface og resten af spillet
 public class Adventure {
     //Vi skal bruge player, for at kalde diverse metoder på den.
@@ -7,6 +9,26 @@ public class Adventure {
         Map map1 = new Map();
         //Spilleren sættes ind i det første rum, når kortet er bygget
         player = new Player(map1.firstRoom);
+    }
+
+    // Beder player om at tage en ting fra det nuværende rum
+    public Item takeItem(String itemName) {
+        return player.takeItem(itemName);
+    }
+
+    // Beder player om at smide en ting i det nuværende rum
+    public Item dropItem(String itemName) {
+        return player.dropItem(itemName);
+    }
+
+    // Henter listen af ting som spilleren bærer på
+    public ArrayList<Item> getPlayerInventory() {
+        return player.getInventory();
+    }
+
+    // Henter listen af ting der ligger i det rum spilleren står i
+    public ArrayList<Item> getRoomItems() {
+        return player.getCurrentRoom().getItems();
     }
 
     //Metoder til at gå en retning. De laver ikke selv arbejdet, men sender beskeden videre
@@ -33,4 +55,5 @@ public class Adventure {
         Room currentRoom = player.getCurrentRoom();
         return currentRoom.getName() + "\n" + currentRoom.getDescription();
     }
+
 }
