@@ -41,7 +41,6 @@ public class UserInterface {
                 case "take"-> handleTake(argument);
                 case "DROP" -> handleDrop(argument);
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
-
                 case "HELP" -> showHelp();
                 }
             }
@@ -53,7 +52,10 @@ public class UserInterface {
         } else {
             IO.println("You find yourself in ...");
             IO.println(adventure.look());
-            IO.println("The room has a " + adventure.getRoomItems());
+            //Listen skriver sig selv som [a, b]. Her klippes parenteserne væk, og kommaet byttes ud med et punktum
+            IO.println("The room has a " + adventure.getRoomItems().toString()
+                    .replace("[", "")
+                    .replace("]", ""));
         }
     }
 

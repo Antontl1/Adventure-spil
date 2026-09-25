@@ -21,6 +21,6 @@ public class Item {
         return itemDescription;
     }
     public String toString(){
-        return String.format("%s %s %s",shortName,longName, itemDescription);
+        return String.format("%s. %s. %s",shortName,longName, itemDescription);
     }
 }
