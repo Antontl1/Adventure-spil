@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// Snakker med brugeren: læser kommandoer og printer svar. Kender kun Adventure
 public class UserInterface {
     private Adventure adventure;
 
@@ -7,6 +8,7 @@ public class UserInterface {
         this.adventure = adventure;
     }
 
+    // Spillets løkke. Kører indtil brugeren skriver EXIT
     public void runGame() {
         boolean gameIsRunning = true;
 
@@ -17,8 +19,10 @@ public class UserInterface {
         while (gameIsRunning) {
             IO.print("\n> ");
             String input = IO.readln().trim();
+            // Tom linje: spring over og spørg igen
             if (input.isEmpty()) continue;
 
+            // Deler input i kommando og resten, f.eks. "TAKE" og "iron rod"
             String[] parts = input.split(" ", 2);
             String command = parts[0].toUpperCase();
             String argument = parts.length > 1 ? parts[1] : "";
@@ -44,6 +48,7 @@ public class UserInterface {
         }
     }
 
+    // Håndterer GO NORTH osv. Retningen er ordet efter GO
     private void handleGo(String direction) {
         if (direction.isEmpty()) {
             IO.println("Go where? (e.g. GO NORTH)");
@@ -59,6 +64,7 @@ public class UserInterface {
         }
     }
 
+    // Printer svaret på et forsøg på at gå. false betyder en væg
     private void tryMove(boolean success) {
         if (!success) {
             IO.println("A solid wall blocks your path. You cannot go that way.");
@@ -68,6 +74,7 @@ public class UserInterface {
         }
     }
 
+    // Håndterer TAKE. null betyder at tingen ikke lå i rummet
     private void handleTake(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to take?");
@@ -82,6 +89,7 @@ public class UserInterface {
         }
     }
 
+    // Håndterer DROP. null betyder at spilleren ikke havde tingen
     private void handleDrop(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to drop?");
@@ -96,6 +104,7 @@ public class UserInterface {
         }
     }
 
+    // Viser hvad spilleren bærer på, én ting per linje
     private void showInventory() {
         ArrayList<Item> inventory = adventure.getPlayerInventory();
         if (inventory.isEmpty()) {

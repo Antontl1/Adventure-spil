@@ -1,9 +1,11 @@
 import java.util.ArrayList;
 
+// Et rum med navn, beskrivelse, fire mulige naboer og de ting der ligger der
 public class Room {
     private String name;
     private String description;
 
+    // null betyder at der ikke er en dør den vej
     private Room north;
     private Room south;
     private Room east;
@@ -15,6 +17,8 @@ public class Room {
         this.name = name;
         this.description = description;
     }
+
+    // Hele teksten til rummet: navn, beskrivelse, udgange og ting
     public String getFullDescription() {
         return name + "\n" + description + "\n" + getExits() + "\n\n" + getFormattedItems();
     }
@@ -28,6 +32,7 @@ public class Room {
     }
 
     // --- NABORUM (SETTERS & GETTERS) ---
+    // Setterne bruges i Map, når kortet bygges. Getterne bruges af Player, når han går
 
     public void setRoomNorth(Room room) {
         this.north = room;
@@ -75,6 +80,7 @@ public class Room {
         inventory.remove(item);
     }
 
+    // Finder en ting i rummet ud fra det korte navn. null hvis den ikke ligger her
     public Item findItem(String itemName) {
         for (Item item : inventory) {
             if (item.getShortName().equalsIgnoreCase(itemName)) {
@@ -84,7 +90,7 @@ public class Room {
         return null;
     }
 
-    // Hjælpemetode til pæn udskrift af rummets genstande
+    // Hjælpemetode til pæn udskrift af rummets genstande, én ting per linje
     public String getFormattedItems() {
         if (inventory.isEmpty()) {
             return "There are no items in this room.";
@@ -93,8 +99,11 @@ public class Room {
         for (Item item : inventory) {
             sb.append("- ").append(item.getShortName()).append(": ").append(item.getItemDescription()).append("\n");
         }
+        // trim fjerner det sidste linjeskift
         return sb.toString().trim();
     }
+
+    // Lister de retninger der har en dør, f.eks. "Exits: East, South"
     public String getExits() {
         ArrayList<String> exits = new ArrayList<>();
 

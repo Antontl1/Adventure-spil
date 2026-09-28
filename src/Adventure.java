@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
-// Bygger kortet og ejer spilleren. Er bindeled mellem UserInterface og resten af spillet
+// Ejer spilleren og er bindeled mellem UserInterface og resten af spillet
 public class Adventure {
     private Player player;
 
+    // Map bygger rummene. Spilleren sættes ind i det første
     public Adventure() {
         Map map = new Map();
         player = new Player(map.getFirstRoom());
@@ -29,7 +30,7 @@ public class Adventure {
         return player.getCurrentRoom().getInventory();
     }
 
-    // Metoder til at gå en retning
+    // Metoder til at gå en retning. Sendes videre til Player. true hvis spilleren blev flyttet
     public boolean goNorth() {
         return player.goNorth();
     }
