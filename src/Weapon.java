@@ -6,8 +6,10 @@ public class Weapon extends Item {
     this.damage = damage;
 }
 
+
+
 public void equip(){
-    IO.println("Weapon is equipped");
+
 }
 
 public attack(){
