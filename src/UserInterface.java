@@ -123,7 +123,7 @@ public class UserInterface {
                 • GO <DIRECTION> / N, S, E, W : Move around the map
                 • LOOK                        : Inspect the current room and items
                 • TAKE <ITEM>                 : Take an item from the room. Must be spelled "take (name of the item)" eg. take iron rod
-                • DROP <ITEM>                 : Drop an item from your inventory
+                • DROP <ITEM>                 : Drop an item from your inventory works the same as take "drop (name of the item)" eg. drop iron rod
                 • INVENTORY / INV             : View carried items
                 • HELP                        : Show this menu
                 • EXIT                        : Quit the game
