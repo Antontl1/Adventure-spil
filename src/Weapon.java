@@ -1,16 +1,12 @@
-public class Weapon extends Item {
-    private final int damage;
+public abstract class Weapon extends Item {
 
-    public Weapon(String shortName, String longName, String itemDescription, int damage) {
-    super(shortName, longName, itemDescription);
-    this.damage = damage;
-}
+    public Weapon(String shortName, String longName, String itemDescription) {
+        super(shortName, longName, itemDescription);
+    }
 
-public void equip(){
-    IO.println("Weapon is equipped");
-}
+    // Returnerer true hvis våbenet kan bruges
+    public abstract boolean canUse();
 
-public attack(){
-
-}
+    // Udfører angreb og returnerer resterende skud/brug (-1 for ubegrænset)
+    public abstract int use();
 }

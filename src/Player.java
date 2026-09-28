@@ -5,6 +5,7 @@ public class Player {
     private Room currentRoom;
     // Tom fra start. Fyldes når spilleren tager ting
     private ArrayList<Item> inventory = new ArrayList<>();
+    private Weapon equippedWeapon = null;
 
     public Player(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -18,6 +19,10 @@ public class Player {
         return inventory;
     }
 
+    public Weapon getEquippedWeapon() {
+        return equippedWeapon;
+    }
+
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
     public Item findItemInInventory(String itemName) {
         for (Item item : inventory) {
@@ -26,6 +31,37 @@ public class Player {
             }
         }
         return null;
+    }
+// --- EQUIP & ATTACK ---
+
+    // Prøver at equippe en ting fra inventory
+    public EquipResult equipItem(String itemName) {
+        Item item = findItemInInventory(itemName);
+
+        if (item == null) {
+            return EquipResult.NOT_IN_INVENTORY;
+        }
+
+        if (item instanceof Weapon) {
+            this.equippedWeapon = (Weapon) item;
+            return EquipResult.SUCCESS;
+        } else {
+            return EquipResult.NOT_A_WEAPON;
+        }
+    }
+
+    // Angriber ud i luften med det equippede våben
+    public AttackResult attack() {
+        if (equippedWeapon == null) {
+            return new AttackResult(AttackStatus.NO_WEAPON_EQUIPPED, null, 0);
+        }
+
+        if (!equippedWeapon.canUse()) {
+            return new AttackResult(AttackStatus.OUT_OF_AMMO, equippedWeapon, 0);
+        }
+
+        int remainingUses = equippedWeapon.use();
+        return new AttackResult(AttackStatus.SUCCESS, equippedWeapon, remainingUses);
     }
 
     // --- TAKE & DROP ---
