@@ -119,7 +119,7 @@ public class UserInterface {
 
     private void showHelp() {
         IO.println("""
-                --- COMMANDS --- 
+                --- COMMANDS ---
                 • GO <DIRECTION> / N, S, E, W : Move around the map
                 • LOOK                        : Inspect the current room and items
                 • TAKE <ITEM>                 : Take an item from the room. Must be spelled "take (name of the item)" eg. take iron rod
