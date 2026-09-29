@@ -40,7 +40,7 @@ public class UserInterface {
 
                 case "EQUIP" -> handleEquip(argument);
                 case "ATTACK" -> handleAttack();
-                case "EAT" ->
+                case "EAT" -> handleEat();
 
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
@@ -165,7 +165,7 @@ public class UserInterface {
                     IO.println("You now have " + remainingHealth + "healthpoints left.");
                 } else {
                     remainingHealth + item.getEffect();
-                    IO.println("");
+                    IO.println("Y");
                 }
             }
         }
