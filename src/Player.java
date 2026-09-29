@@ -3,7 +3,7 @@ import java.util.ArrayList;
 // Holder styr på hvor spilleren står, og hvad han bærer på
 public class Player {
     private Room currentRoom;
-    int health = 100; //
+    int health = 100;
     // Tom fra start. Fyldes når spilleren tager ting
     private ArrayList<Item> inventory = new ArrayList<>();
     // Våbnet spilleren har i hånden. null indtil han equipper et
