@@ -15,4 +15,9 @@ public class MeleeWeapon extends Weapon {
     public int use() {
         return 1; // Indikerer ubegrænset brug
     }
+
+    @Override
+    public int getRemainingUses() {
+        return -1; // Løber aldrig tør
+    }
 }

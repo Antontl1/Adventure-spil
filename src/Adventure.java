@@ -52,12 +52,16 @@ public class Adventure {
         return player.equipItem(itemName);
     }
 
-    public AttackResult attack() {
+    public AttackStatus attack() {
         return player.attack();
     }
 
-    public FoodStatus eat(){
-        return player.eat();
+    public FoodStatus eat(String itemName){
+        return player.eat(itemName);
+    }
+
+    public int getHealth() {
+        return player.getHealth();
     }
 
     public Weapon getEquippedWeapon() {

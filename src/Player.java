@@ -25,6 +25,10 @@ public class Player {
         return equippedWeapon;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
     public Item findItemInInventory(String itemName) {
         for (Item item : inventory) {
@@ -59,21 +63,38 @@ public class Player {
 
     // Angriber ud i luften med det equippede våben
     // Ved ikke om det er nærkamp eller skydevåben. canUse() og use() svarer forskelligt alt efter subklassen
-    public AttackResult attack() {
+    public AttackStatus attack() {
         if (equippedWeapon == null) {
-            return new AttackResult(AttackStatus.NO_WEAPON_EQUIPPED, null, 0);
+            return AttackStatus.NO_WEAPON_EQUIPPED;
         }
 
         if (!equippedWeapon.canUse()) {
-            return new AttackResult(AttackStatus.OUT_OF_AMMO, equippedWeapon, 0);
+            return AttackStatus.OUT_OF_AMMO;
         }
 
-        int remainingUses = equippedWeapon.use();
-        return new AttackResult(AttackStatus.SUCCESS, equippedWeapon, remainingUses);
+        equippedWeapon.use();
+        return AttackStatus.SUCCESS;
     }
 
-    public EquipResult eat() {
-        int reminingHealth = .use();
+    // Spiser en ting fra inventory. Svaret fortæller UserInterface, hvordan det gik
+    public FoodStatus eat(String itemName) {
+        // Man kan kun spise noget, man bærer på
+        Item item = findItemInInventory(itemName);
+        if (item == null) {
+            return FoodStatus.NOT_FOUND;
+        }
+        // instanceof tjekker om tingen er mad, så casten nedenfor ikke crasher
+        if (item instanceof Food) {
+            // Casten giver adgang til getHealthPoints(), som kun Food har
+            Food food = (Food) item;
+            // Negative healthPoints (gift) trækker automatisk fra
+            health += food.getHealthPoints();
+            // Maden er spist, så den forsvinder fra inventory
+            inventory.remove(food);
+            return FoodStatus.EATEN;
+        } else {
+            return FoodStatus.NOT_FOOD;
+        }
     }
 
     // --- TAKE & DROP ---

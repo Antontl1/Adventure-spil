@@ -22,4 +22,9 @@ public class RangedWeapon extends Weapon {
         }
         return uses;
     }
+
+    @Override
+    public int getRemainingUses() {
+        return uses;
+    }
 }

@@ -40,7 +40,7 @@ public class UserInterface {
 
                 case "EQUIP" -> handleEquip(argument);
                 case "ATTACK" -> handleAttack();
-                case "EAT" -> handleEat();
+                case "EAT" -> handleEat(argument);
 
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
@@ -129,14 +129,15 @@ public class UserInterface {
 
     // Håndterer ATTACK
     private void handleAttack() {
-        AttackResult result = adventure.attack();
+        AttackStatus status = adventure.attack();
+        // Våbnet og antal skud hentes direkte, nu hvor angrebet er udført
+        Weapon weapon = adventure.getEquippedWeapon();
 
-        switch (result.getStatus()) {
+        switch (status) {
             case NO_WEAPON_EQUIPPED -> IO.println("You don't have a weapon equipped!");
-            case OUT_OF_AMMO -> IO.println("*Click...* The " + result.getWeapon().getLongName() + " is out of ammunition.");
+            case OUT_OF_AMMO -> IO.println("*Click...* The " + weapon.getLongName() + " is out of ammunition.");
             case SUCCESS -> {
-                Weapon weapon = result.getWeapon();
-                int remainingUses = result.getRemainingUses();
+                int remainingUses = weapon.getRemainingUses();
 
                 if (remainingUses == -1) {
                     // MeleeWeapon (ubegrænset brug)
@@ -149,24 +150,17 @@ public class UserInterface {
         }
     }
 
-    public void handleEat() {
-        FoodResult result = adventure.eat();
+    public void handleEat(String itemName) {
+        // Maden er væk efter den er spist, så forskellen i health viser hvad den gav
+        int healthBefore = adventure.getHealth();
+        FoodStatus status = adventure.eat(itemName);
 
-        switch (result.getStatus()) {
-            case NOT_FOUND -> IO.println("You don't have that in your inventory.");
+        switch (status) {
+            case NOT_FOUND -> IO.println("You don't have that in your inventory or in the room.");
             case NOT_FOOD -> IO.println("Item is not edible.");
             case EATEN -> {
-                Food food = result.getFood();
-                int remainingHealth = result.getRemainingHealth();
 
-                if (food.healthPoints <= -1) {
-                    remainingHealth - item.getEffect();
-                    IO.println("The item you consumed was poisonous. You lost " + getEffect + "healthpoints.");
-                    IO.println("You now have " + remainingHealth + "healthpoints left.");
-                } else {
-                    remainingHealth + item.getEffect();
-                    IO.println("Y");
-                }
+
             }
         }
     }
