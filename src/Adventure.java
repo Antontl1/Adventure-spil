@@ -60,6 +60,8 @@ public class Adventure {
         return player.eat();
     }
 
+    public
+
     public Weapon getEquippedWeapon() {
         return player.getEquippedWeapon();
     }

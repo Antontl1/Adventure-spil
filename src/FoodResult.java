@@ -3,7 +3,7 @@ public class FoodResult {
     private Food food;
 
     public FoodResult(FoodStatus status, Food food){
-        this.status=status;
+        this.status = status;
         this.food = food;
     }
 
@@ -13,5 +13,9 @@ public class FoodResult {
 
     public Food getFood() {
         return food;
+    }
+
+    public int getEffect(){
+        return food.healthPoints;
     }
 }
