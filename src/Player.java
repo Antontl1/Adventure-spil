@@ -8,7 +8,6 @@ public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
     // Våbnet spilleren har i hånden. null indtil han equipper et
     private Weapon equippedWeapon = null;
-    private Food equippedFood = null;
 
     public Player(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -24,10 +23,6 @@ public class Player {
 
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
-    }
-
-    public  Food getEquippedFood (){
-        return equippedFood;
     }
 
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
@@ -61,8 +56,6 @@ public class Player {
 
     // --- EAT ---
 
-    public
-
 
     // Angriber ud i luften med det equippede våben
     // Ved ikke om det er nærkamp eller skydevåben. canUse() og use() svarer forskelligt alt efter subklassen
@@ -79,6 +72,10 @@ public class Player {
         return new AttackResult(AttackStatus.SUCCESS, equippedWeapon, remainingUses);
     }
 
+    public EquipResult eat() {
+        int reminingHealth = .use();
+    }
+
     // --- TAKE & DROP ---
 
     // Flytter en ting fra rummet til spilleren. null hvis den ikke lå i rummet
@@ -90,6 +87,7 @@ public class Player {
         }
         return item;
     }
+
 
     // Flytter en ting fra spilleren til rummet. null hvis spilleren ikke havde den
     public Item dropItem(String itemName) {

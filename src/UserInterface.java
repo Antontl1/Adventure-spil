@@ -40,7 +40,7 @@ public class UserInterface {
 
                 case "EQUIP" -> handleEquip(argument);
                 case "ATTACK" -> handleAttack();
-                case "EAT" ->
+                case "EAT" -> handleEat();
 
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
@@ -150,7 +150,7 @@ public class UserInterface {
     }
 
     public void handleEat() {
-        FoodResults result = adventure.eat();
+        FoodResult result = adventure.eat();
 
         switch (result.getStatus()) {
             case NOT_FOUND -> IO.println("You don't have that in your inventory.");
