@@ -151,7 +151,6 @@ public class UserInterface {
 
     public void handleEat() {
         EatResult result = adventure.eat();
-
         switch (result.getStatus())
     }
 
