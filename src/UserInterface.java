@@ -133,7 +133,7 @@ public class UserInterface {
 
         switch (result.getStatus()) {
             case NO_WEAPON_EQUIPPED -> IO.println("You don't have a weapon equipped!");
-            case OUT_OF_AMMO -> IO.println("Click... The " + result.getWeapon().getLongName() + " is out of ammunition.");
+            case OUT_OF_AMMO -> IO.println("*Click...* The " + result.getWeapon().getLongName() + " is out of ammunition.");
             case SUCCESS -> {
                 Weapon weapon = result.getWeapon();
                 int remainingUses = result.getRemainingUses();
@@ -151,6 +151,8 @@ public class UserInterface {
 
     public void handleEat() {
         EatResult result = adventure.eat();
+
+        switch (result.getStatus())
     }
 
     // Viser hvad spilleren bærer på og hvilket våben der er equipped
