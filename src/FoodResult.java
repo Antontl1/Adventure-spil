@@ -1,8 +1,8 @@
-public class FoodResults {
+public class FoodResult {
     private FoodStatus status;
     private Food food;
 
-    public FoodResults (FoodStatus status, Food food){
+    public FoodResult(FoodStatus status, Food food){
         this.status=status;
         this.food = food;
     }

@@ -150,8 +150,10 @@ public class UserInterface {
     }
 
     public void handleEat() {
-        EatResult result = adventure.eat();
-        switch (result.getStatus())
+        FoodResult result = adventure.eat();
+        switch (result.getStatus()){
+
+        }
     }
 
     // Viser hvad spilleren bærer på og hvilket våben der er equipped

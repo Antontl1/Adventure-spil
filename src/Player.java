@@ -8,6 +8,7 @@ public class Player {
     private ArrayList<Item> inventory = new ArrayList<>();
     // Våbnet spilleren har i hånden. null indtil han equipper et
     private Weapon equippedWeapon = null;
+    private Food equippedFood = null;
 
     public Player(Room currentRoom) {
         this.currentRoom = currentRoom;
@@ -26,7 +27,7 @@ public class Player {
     }
 
     public  Food getEquippedFood (){
-        return getEquippedFood;
+        return equippedFood;
     }
 
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
@@ -58,7 +59,9 @@ public class Player {
         }
     }
 
-    // --- EQUIP AND EAT ---
+    // --- EAT ---
+
+    public
 
 
     // Angriber ud i luften med det equippede våben
