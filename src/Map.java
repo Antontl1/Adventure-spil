@@ -27,12 +27,13 @@ public class Map {
         Item item1 = new Item("iron rod", "A fireplace iron rod", "Still a little warm from the last fire"); // Entrance Hall
         Item item2 = new Item("the bible", "The Holy Bible", "It's very worn out. May the lord show me the way through these rooms"); // Library
         Item item3 = new Item("sword", "A Royal Sword", "It features a purple handle and triangular crest markings on the blade"); // Armoury
-        Item item4 = new Item("bread", "A moldy corn bread", "Seems like the rats have already taken a few bites"); // Kitchen
+        Item item4 = new Item("soup ladle", "A rusty soup ladle", "Looks quite rusty in parts"); // Kitchen
         Item item5 = new Item("crown", "A royal crown", "It is fitted with large beautiful gem stones"); // Throne room
         Item item6 = new Item("dead rat", "A stinky dead rat", "It smells awful and is probably filled with diseases"); // Dungeon
-        Item item7 = new Item("bottle of water", "A bottle of water", "Probably from the fountain before it dried out"); // Garden
+        Item item7 = new Item("wine glass", "A used wine glass", "Has been used recently as small remains of leftover wine rests at the bottom"); // Garden
         Item item8 = new Item("torch", "A small torch", "Currently it's not lit"); // Hallway
         Item item9 = new Item("coins", "a couple of gold coins", "They are quite shiny. Probably has some value to them"); // Treasure chamber
+
 
         // Nærkampsvåben: kort navn, langt navn, beskrivelse
         Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker", "The tip is blackened from years in the fire"); // Entrance Hall
