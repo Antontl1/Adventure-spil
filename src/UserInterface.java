@@ -24,7 +24,9 @@ public class UserInterface {
 
             // Deler input i kommando og resten, f.eks. "TAKE" og "iron rod"
             String[] parts = input.split(" ", 2);
+            // toUpperCase gør, at både "look" og "LOOK" virker
             String command = parts[0].toUpperCase();
+            // Har brugeren kun skrevet ét ord, er der ingen argument, og så bruges en tom tekst
             String argument = parts.length > 1 ? parts[1] : "";
 
             switch (command) {
@@ -121,6 +123,7 @@ public class UserInterface {
             case NOT_IN_INVENTORY -> IO.println("You do not have a '" + itemName + "' in your inventory.");
             case NOT_A_WEAPON -> IO.println("The " + itemName + " is not a weapon.");
             case SUCCESS -> {
+                // Våbnet hentes for at kunne skrive dets lange navn
                 Weapon equipped = adventure.getEquippedWeapon();
                 IO.println("You have equipped " + equipped.getLongName());
             }
@@ -137,6 +140,7 @@ public class UserInterface {
             case NO_WEAPON_EQUIPPED -> IO.println("You don't have a weapon equipped!");
             case OUT_OF_AMMO -> IO.println("*Click...* The " + weapon.getLongName() + " is out of ammunition.");
             case SUCCESS -> {
+                // -1 betyder nærkampsvåben. Alle andre tal er skud tilbage
                 int remainingUses = weapon.getRemainingUses();
 
                 if (remainingUses == -1) {
@@ -150,6 +154,7 @@ public class UserInterface {
         }
     }
 
+    // Håndterer EAT <mad>
     public void handleEat(String itemName) {
         // Maden er væk efter den er spist, så forskellen i health viser hvad den gav
         int healthBefore = adventure.getHealth();
@@ -186,6 +191,7 @@ public class UserInterface {
         }
     }
 
+    // Viser alle kommandoer. """ er en tekstblok, så teksten kan stå over flere linjer
     private void showHelp() {
         IO.println("""
                 --- COMMANDS ---

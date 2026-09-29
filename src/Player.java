@@ -3,6 +3,7 @@ import java.util.ArrayList;
 // Holder styr på hvor spilleren står, og hvad han bærer på
 public class Player {
     private Room currentRoom;
+    // Spillerens liv. Starter på 100 og ændres, når han spiser
     int health = 100;
     // Tom fra start. Fyldes når spilleren tager ting
     private ArrayList<Item> inventory = new ArrayList<>();
@@ -58,9 +59,6 @@ public class Player {
         }
     }
 
-    // --- EAT ---
-
-
     // Angriber ud i luften med det equippede våben
     // Ved ikke om det er nærkamp eller skydevåben. canUse() og use() svarer forskelligt alt efter subklassen
     public AttackStatus attack() {
@@ -72,9 +70,12 @@ public class Player {
             return AttackStatus.OUT_OF_AMMO;
         }
 
+        // use() tæller et skud ned på skydevåben. Nærkampsvåben gør ingenting
         equippedWeapon.use();
         return AttackStatus.SUCCESS;
     }
+
+    // --- EAT ---
 
     // Spiser en ting fra inventory. Svaret fortæller UserInterface, hvordan det gik
     public FoodStatus eat(String itemName) {

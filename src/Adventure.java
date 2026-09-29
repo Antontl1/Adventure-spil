@@ -56,17 +56,21 @@ public class Adventure {
         return player.attack();
     }
 
+    // Det våben spilleren har i hånden. null hvis han ikke har equipped noget
+    public Weapon getEquippedWeapon() {
+        return player.getEquippedWeapon();
+    }
+
+    // Madmetoder. Sendes videre til Player
     public FoodStatus eat(String itemName){
         return player.eat(itemName);
     }
 
+    // Bruges af UserInterface til at vise spillerens liv
     public int getHealth() {
         return player.getHealth();
     }
 
-    public Weapon getEquippedWeapon() {
-        return player.getEquippedWeapon();
-    }
     // Henter rummets navn, beskrivelse, udgange og genstande
     public String look() {
         Room currentRoom = player.getCurrentRoom();
