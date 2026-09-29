@@ -56,7 +56,7 @@ public class Adventure {
         return player.attack();
     }
 
-    public EatResult eat(){
+    public FoodResult eat(){
         return player.eat();
     }
 
