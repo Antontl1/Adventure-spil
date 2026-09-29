@@ -3,7 +3,7 @@ public class FoodResults {
     private Food food;
 
     public FoodResults (FoodStatus status, Food food){
-        this.status=status;
+        this.status = status;
         this.food = food;
     }
 

@@ -153,7 +153,21 @@ public class UserInterface {
         FoodResults result = adventure.eat();
 
         switch (result.getStatus()) {
+            case NOT_FOUND -> IO.println("You don't have that in your inventory.");
+            case NOT_FOOD -> IO.println("Item is not edible.");
+            case EATEN -> {
+                Food food = result.getFood();
+                int remainingHealth = result.getRemainingHealth();
 
+                if (food.healthPoints <= -1) {
+                    remainingHealth - item.getEffect();
+                    IO.println("The item you consumed was poisonous. You lost " + getEffect + "healthpoints.");
+                    IO.println("You now have " + remainingHealth + "healthpoints left.");
+                } else {
+                    remainingHealth + item.getEffect();
+                    IO.println("");
+                }
+            }
         }
     }
 
