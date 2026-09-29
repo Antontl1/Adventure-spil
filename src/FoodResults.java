@@ -1,13 +1,13 @@
 public class FoodResults {
-    private FoodResult status;
+    private FoodStatus status;
     private Food food;
 
-    public FoodResults (FoodResult status,Food food){
+    public FoodResults (FoodStatus status, Food food){
         this.status=status;
         this.food = food;
     }
 
-    public FoodResult getStatus(){
+    public FoodStatus getStatus(){
         return status;
     }
 
