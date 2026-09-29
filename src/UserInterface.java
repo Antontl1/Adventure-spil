@@ -40,6 +40,7 @@ public class UserInterface {
 
                 case "EQUIP" -> handleEquip(argument);
                 case "ATTACK" -> handleAttack();
+                case "EAT" ->
 
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
@@ -146,6 +147,10 @@ public class UserInterface {
                 }
             }
         }
+    }
+
+    public void handleEat() {
+        EatResult result = adventure.eat();
     }
 
     // Viser hvad spilleren bærer på og hvilket våben der er equipped

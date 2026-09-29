@@ -24,6 +24,10 @@ public class Player {
         return equippedWeapon;
     }
 
+    public  Food getEquippedFood (){
+        return getEquippedFood;
+    }
+
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
     public Item findItemInInventory(String itemName) {
         for (Item item : inventory) {
@@ -52,6 +56,9 @@ public class Player {
             return EquipResult.NOT_A_WEAPON;
         }
     }
+
+    // --- EQUIP AND EAT ---
+
 
     // Angriber ud i luften med det equippede våben
     // Ved ikke om det er nærkamp eller skydevåben. canUse() og use() svarer forskelligt alt efter subklassen
