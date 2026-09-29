@@ -47,6 +47,17 @@ public class Map {
         Weapon weapon7 = new RangedWeapon("slingshot", "A wooden slingshot", "Pebbles from the dry fountain would make good ammo", 10); // Garden
         Weapon weapon9 = new RangedWeapon("bow", "An ornate longbow", "Decorated with gold. A quiver of arrows lies next to it", 5); // Treasure Chamber
 
+        // Mad: kort navn, langt navn, beskrivelse, healthPoints. Negativt tal betyder gift
+        Food food1 = new Food("biscuit", "A dry biscuit", "Left on a side table. Stale, but still edible", 5); // Entrance Hall
+        Food food2 = new Food("tea", "A cold cup of tea", "Someone forgot it between the books long ago", 3); // Library
+        Food food3 = new Food("ration", "A soldier's ration", "Salted meat wrapped in cloth. Made to last", 10); // Armoury
+        Food food4 = new Food("stew", "A bowl of stew", "Still warm on the stove. Smells better than the bread", 15); // Kitchen
+        Food food5 = new Food("goblet", "A goblet of wine", "Dark red and strangely bitter. Maybe that is why the throne is empty", -20); // Throne Room
+        Food food6 = new Food("mushroom", "A glowing mushroom", "It grows between the stones and glows a sickly green", -10); // Dungeon
+        Food food7 = new Food("apple", "A red apple", "Fallen from an overgrown tree by the fountain", 8); // Garden
+        Food food8 = new Food("cheese", "A wedge of cheese", "The rats have not found it yet", 6); // Hallway
+        Food food9 = new Food("cake", "A golden honey cake", "Fit for a king and hidden among the treasure", 25); // Treasure Chamber
+
         //tilføj items til rum
         room1.addItem(item1);
         room2.addItem(item2);
@@ -68,6 +79,17 @@ public class Map {
         room7.addItem(weapon7);
         room8.addItem(weapon8);
         room9.addItem(weapon9);
+
+        //tilføj mad til rum
+        room1.addItem(food1);
+        room2.addItem(food2);
+        room3.addItem(food3);
+        room4.addItem(food4);
+        room5.addItem(food5);
+        room6.addItem(food6);
+        room7.addItem(food7);
+        room8.addItem(food8);
+        room9.addItem(food9);
 
         // Spilleren starter i det første rum
         firstRoom = room1;
