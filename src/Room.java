@@ -18,11 +18,6 @@ public class Room {
         this.description = description;
     }
 
-    // Hele teksten til rummet: navn, beskrivelse, udgange og ting
-    public String getFullDescription() {
-        return name + "\n" + description + "\n" + getExits() + "\n\n" + getFormattedItems();
-    }
-
     public String getName() {
         return name;
     }

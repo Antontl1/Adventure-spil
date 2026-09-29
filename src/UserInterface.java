@@ -30,10 +30,8 @@ public class UserInterface {
             String argument = parts.length > 1 ? parts[1] : "";
 
             switch (command) {
-                case "N", "NORTH" -> tryMove(adventure.goNorth());
-                case "S", "SOUTH" -> tryMove(adventure.goSouth());
-                case "E", "EAST" -> tryMove(adventure.goEast());
-                case "W", "WEST" -> tryMove(adventure.goWest());
+                // En retning skrevet alene, f.eks. "N", sendes videre som om der stod "GO N"
+                case "N", "NORTH", "S", "SOUTH", "E", "EAST", "W", "WEST" -> handleGo(command);
                 case "GO" -> handleGo(argument);
 
                 case "LOOK" -> IO.println(adventure.look());
@@ -201,6 +199,7 @@ public class UserInterface {
                 • DROP <ITEM>                 : Drop an item from your inventory works the same as take
                 • EQUIP <WEAPON>              : Equip a weapon from your inventory
                 • ATTACK                      : Use your equipped weapon
+                • EAT <FOOD>                  : Eat food from your inventory. Some food may be poisoned!
                 • INVENTORY / INV             : View carried items and equipped weapon
                 • HELP                        : Show this menu
                 • EXIT                        : Quit the game

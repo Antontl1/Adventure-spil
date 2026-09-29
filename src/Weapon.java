@@ -12,7 +12,7 @@ public abstract class Weapon extends Item {
     public abstract boolean canUse();
 
     // Udfører angreb og returnerer resterende skud/brug (-1 for ubegrænset)
-    public abstract int use();
+    public abstract void use();
 
     // Hvor mange skud der er tilbage. -1 betyder ubegrænset
     public abstract int getRemainingUses();

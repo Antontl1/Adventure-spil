@@ -16,11 +16,10 @@ public class RangedWeapon extends Weapon {
 
     // Bruger ét skud og returnerer hvor mange der er tilbage. Går aldrig under 0
     @Override
-    public int use() {
+    public void use() {
         if (canUse()) {
             uses--;
         }
-        return uses;
     }
 
     @Override

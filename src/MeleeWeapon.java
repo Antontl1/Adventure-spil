@@ -12,8 +12,7 @@ public class MeleeWeapon extends Weapon {
     }
 
     @Override
-    public int use() {
-        return 1; // Indikerer ubegrænset brug
+    public void use() {
     }
 
     @Override
