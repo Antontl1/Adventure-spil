@@ -150,7 +150,7 @@ public class UserInterface {
     }
 
     public void handleEat() {
-        FoodResults result = adventure.eat();
+        FoodResult result = adventure.eat();
 
         switch (result.getStatus()) {
             case NOT_FOUND -> IO.println("You don't have that in your inventory.");

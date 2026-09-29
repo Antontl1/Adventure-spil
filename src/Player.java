@@ -3,7 +3,7 @@ import java.util.ArrayList;
 // Holder styr på hvor spilleren står, og hvad han bærer på
 public class Player {
     private Room currentRoom;
-    private int remainingHealth = 100;
+    int health = 100;
     // Tom fra start. Fyldes når spilleren tager ting
     private ArrayList<Item> inventory = new ArrayList<>();
     // Våbnet spilleren har i hånden. null indtil han equipper et
@@ -23,14 +23,6 @@ public class Player {
 
     public Weapon getEquippedWeapon() {
         return equippedWeapon;
-    }
-
-    public Food getEquippedFood (){
-        return equippedFood;
-    }
-
-    public int getRemainingHealth() {
-        return remainingHealth;
     }
 
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
@@ -62,7 +54,7 @@ public class Player {
         }
     }
 
-    // --- EQUIP AND EAT ---
+    // --- EAT ---
 
 
     // Angriber ud i luften med det equippede våben
@@ -80,6 +72,10 @@ public class Player {
         return new AttackResult(AttackStatus.SUCCESS, equippedWeapon, remainingUses);
     }
 
+    public EquipResult eat() {
+        int reminingHealth = .use();
+    }
+
     // --- TAKE & DROP ---
 
     // Flytter en ting fra rummet til spilleren. null hvis den ikke lå i rummet
@@ -91,6 +87,7 @@ public class Player {
         }
         return item;
     }
+
 
     // Flytter en ting fra spilleren til rummet. null hvis spilleren ikke havde den
     public Item dropItem(String itemName) {
