@@ -14,4 +14,8 @@ public class FoodResults {
     public Food getFood() {
         return food;
     }
+
+    public int getEffect(){
+        return food.healthPoints;
+    }
 }
