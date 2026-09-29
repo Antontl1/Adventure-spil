@@ -1,3 +1,4 @@
+// De mulige udfald af ATTACK
 public enum AttackStatus {
     SUCCESS,
     NO_WEAPON_EQUIPPED,

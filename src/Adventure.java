@@ -46,6 +46,8 @@ public class Adventure {
     public boolean goWest() {
         return player.goWest();
     }
+
+    // Våbenmetoder. Sendes videre til Player
     public EquipResult equipItem(String itemName) {
         return player.equipItem(itemName);
     }

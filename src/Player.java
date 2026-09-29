@@ -5,6 +5,7 @@ public class Player {
     private Room currentRoom;
     // Tom fra start. Fyldes når spilleren tager ting
     private ArrayList<Item> inventory = new ArrayList<>();
+    // Våbnet spilleren har i hånden. null indtil han equipper et
     private Weapon equippedWeapon = null;
 
     public Player(Room currentRoom) {
@@ -35,6 +36,7 @@ public class Player {
 // --- EQUIP & ATTACK ---
 
     // Prøver at equippe en ting fra inventory
+    // Tingen bliver i inventory. equippedWeapon peger bare på den
     public EquipResult equipItem(String itemName) {
         Item item = findItemInInventory(itemName);
 
@@ -42,6 +44,7 @@ public class Player {
             return EquipResult.NOT_IN_INVENTORY;
         }
 
+        // instanceof tjekker om tingen er et våben. (Weapon) fortæller Java, at den må behandles som et
         if (item instanceof Weapon) {
             this.equippedWeapon = (Weapon) item;
             return EquipResult.SUCCESS;
@@ -51,6 +54,7 @@ public class Player {
     }
 
     // Angriber ud i luften med det equippede våben
+    // Ved ikke om det er nærkamp eller skydevåben. canUse() og use() svarer forskelligt alt efter subklassen
     public AttackResult attack() {
         if (equippedWeapon == null) {
             return new AttackResult(AttackStatus.NO_WEAPON_EQUIPPED, null, 0);

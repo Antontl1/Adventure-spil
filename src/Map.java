@@ -34,7 +34,7 @@ public class Map {
         Item item8 = new Item("torch", "A small torch", "Currently it's not lit"); // Hallway
         Item item9 = new Item("coins", "a couple of gold coins", "They are quite shiny. Probably has some value to them"); // Treasure chamber
 
-        // Nærkampsvåben: kort navn, langt navn, beskrivelse, skade
+        // Nærkampsvåben: kort navn, langt navn, beskrivelse
         Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker", "The tip is blackened from years in the fire"); // Entrance Hall
         Weapon weapon2 = new MeleeWeapon("dagger", "A silver letter dagger", "Hidden inside a hollowed out book. Small, but sharp"); // Library
         Weapon weapon3 = new MeleeWeapon("axe", "A rusty battle axe", "Heavy and dull, but it will still leave a mark"); // Armoury
@@ -43,7 +43,7 @@ public class Map {
         Weapon weapon6 = new MeleeWeapon("whip", "A leather whip", "Once used by the guards. It cracks loudly in the silence"); // Dungeon
         Weapon weapon8 = new MeleeWeapon("spear", "A guard's spear", "Taken from a rack on the wall. Long enough to keep enemies away"); // Hallway
 
-        // Skydevåben: kort navn, langt navn, beskrivelse, skade, antal skud
+        // Skydevåben: kort navn, langt navn, beskrivelse, antal skud
         Weapon weapon7 = new RangedWeapon("slingshot", "A wooden slingshot", "Pebbles from the dry fountain would make good ammo", 10); // Garden
         Weapon weapon9 = new RangedWeapon("bow", "An ornate longbow", "Decorated with gold. A quiver of arrows lies next to it", 5); // Treasure Chamber
 
