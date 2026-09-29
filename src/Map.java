@@ -35,17 +35,17 @@ public class Map {
         Item item9 = new Item("coins", "a couple of gold coins", "They are quite shiny. Probably has some value to them"); // Treasure chamber
 
         // Nærkampsvåben: kort navn, langt navn, beskrivelse, skade
-        Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker", "The tip is blackened from years in the fire", 4); // Entrance Hall
-        Weapon weapon2 = new MeleeWeapon("dagger", "A silver letter dagger", "Hidden inside a hollowed out book. Small, but sharp", 3); // Library
-        Weapon weapon3 = new MeleeWeapon("axe", "A rusty battle axe", "Heavy and dull, but it will still leave a mark", 8); // Armoury
-        Weapon weapon4 = new MeleeWeapon("cleaver", "A butcher's cleaver", "Stained with something you would rather not think about", 6); // Kitchen
-        Weapon weapon5 = new MeleeWeapon("scepter", "A golden scepter", "Made for ruling, but heavy enough to swing", 5); // Throne Room
-        Weapon weapon6 = new MeleeWeapon("whip", "A leather whip", "Once used by the guards. It cracks loudly in the silence", 3); // Dungeon
-        Weapon weapon8 = new MeleeWeapon("spear", "A guard's spear", "Taken from a rack on the wall. Long enough to keep enemies away", 7); // Hallway
+        Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker", "The tip is blackened from years in the fire"); // Entrance Hall
+        Weapon weapon2 = new MeleeWeapon("dagger", "A silver letter dagger", "Hidden inside a hollowed out book. Small, but sharp"); // Library
+        Weapon weapon3 = new MeleeWeapon("axe", "A rusty battle axe", "Heavy and dull, but it will still leave a mark"); // Armoury
+        Weapon weapon4 = new MeleeWeapon("cleaver", "A butcher's cleaver", "Stained with something you would rather not think about"); // Kitchen
+        Weapon weapon5 = new MeleeWeapon("scepter", "A golden scepter", "Made for ruling, but heavy enough to swing"); // Throne Room
+        Weapon weapon6 = new MeleeWeapon("whip", "A leather whip", "Once used by the guards. It cracks loudly in the silence"); // Dungeon
+        Weapon weapon8 = new MeleeWeapon("spear", "A guard's spear", "Taken from a rack on the wall. Long enough to keep enemies away"); // Hallway
 
         // Skydevåben: kort navn, langt navn, beskrivelse, skade, antal skud
-        Weapon weapon7 = new RangedWeapon("slingshot", "A wooden slingshot", "Pebbles from the dry fountain would make good ammo", 2, 10); // Garden
-        Weapon weapon9 = new RangedWeapon("bow", "An ornate longbow", "Decorated with gold. A quiver of arrows lies next to it", 9, 5); // Treasure Chamber
+        Weapon weapon7 = new RangedWeapon("slingshot", "A wooden slingshot", "Pebbles from the dry fountain would make good ammo", 10); // Garden
+        Weapon weapon9 = new RangedWeapon("bow", "An ornate longbow", "Decorated with gold. A quiver of arrows lies next to it", 5); // Treasure Chamber
 
         //tilføj items til rum
         room1.addItem(item1);

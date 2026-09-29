@@ -37,8 +37,10 @@ public class UserInterface {
                 case "LOOK" -> IO.println(adventure.look());
                 case "TAKE" -> handleTake(argument);
                 case "DROP" -> handleDrop(argument);
-                case "EQUIP" ->
-                case "ATTACK" ->
+
+                case "EQUIP" -> handleEquip(argument);
+                case "ATTACK" -> handleAttack();
+
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
                 case "EXIT" -> {
@@ -106,7 +108,47 @@ public class UserInterface {
         }
     }
 
-    // Viser hvad spilleren bærer på, én ting per linje
+    // Håndterer EQUIP <våben>
+    private void handleEquip(String itemName) {
+        if (itemName.isEmpty()) {
+            IO.println("What do you want to equip?");
+            return;
+        }
+
+        EquipResult result = adventure.equipItem(itemName);
+        switch (result) {
+            case NOT_IN_INVENTORY -> IO.println("You do not have a '" + itemName + "' in your inventory.");
+            case NOT_A_WEAPON -> IO.println("The " + itemName + " is not a weapon.");
+            case SUCCESS -> {
+                Weapon equipped = adventure.getEquippedWeapon();
+                IO.println("You have equipped " + equipped.getLongName());
+            }
+        }
+    }
+
+    // Håndterer ATTACK
+    private void handleAttack() {
+        AttackResult result = adventure.attack();
+
+        switch (result.getStatus()) {
+            case NO_WEAPON_EQUIPPED -> IO.println("You don't have a weapon equipped!");
+            case OUT_OF_AMMO -> IO.println("Click... The " + result.getWeapon().getLongName() + " is out of ammunition.");
+            case SUCCESS -> {
+                Weapon weapon = result.getWeapon();
+                int remainingUses = result.getRemainingUses();
+
+                if (remainingUses == -1) {
+                    // MeleeWeapon (ubegrænset brug)
+                    IO.println("You swing " + weapon.getLongName() + " at the empty air.");
+                } else {
+                    // RangedWeapon (begrænset skud)
+                    IO.println("You fire " + weapon.getLongName() + " into the empty air. " + remainingUses + " shots left.");
+                }
+            }
+        }
+    }
+
+    // Viser hvad spilleren bærer på og hvilket våben der er equipped
     private void showInventory() {
         ArrayList<Item> inventory = adventure.getPlayerInventory();
         if (inventory.isEmpty()) {
@@ -117,6 +159,14 @@ public class UserInterface {
                 IO.println("- " + item.getShortName() + ": " + item.getLongName());
             }
         }
+
+        // Viser equipped våben
+        Weapon equipped = adventure.getEquippedWeapon();
+        if (equipped != null) {
+            IO.println("Equipped: " + equipped.getLongName());
+        } else {
+            IO.println("Equipped: none");
+        }
     }
 
     private void showHelp() {
@@ -124,9 +174,11 @@ public class UserInterface {
                 --- COMMANDS ---
                 • GO <DIRECTION> / N, S, E, W : Move around the map
                 • LOOK                        : Inspect the current room and items
-                • TAKE <ITEM>                 : Take an item from the room. Must be spelled "take (name of the item)" eg. take iron rod
-                • DROP <ITEM>                 : Drop an item from your inventory works the same as take "drop (name of the item)" eg. drop iron rod
-                • INVENTORY / INV             : View carried items
+                • TAKE <ITEM>                 : Take an item from the room this works like take itemname eg. take iron rod
+                • DROP <ITEM>                 : Drop an item from your inventory works the same as take
+                • EQUIP <WEAPON>              : Equip a weapon from your inventory
+                • ATTACK                      : Use your equipped weapon
+                • INVENTORY / INV             : View carried items and equipped weapon
                 • HELP                        : Show this menu
                 • EXIT                        : Quit the game
                 """);

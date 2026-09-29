@@ -46,7 +46,17 @@ public class Adventure {
     public boolean goWest() {
         return player.goWest();
     }
+    public EquipResult equipItem(String itemName) {
+        return player.equipItem(itemName);
+    }
 
+    public AttackResult attack() {
+        return player.attack();
+    }
+
+    public Weapon getEquippedWeapon() {
+        return player.getEquippedWeapon();
+    }
     // Henter rummets navn, beskrivelse, udgange og genstande
     public String look() {
         Room currentRoom = player.getCurrentRoom();
