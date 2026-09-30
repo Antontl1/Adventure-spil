@@ -42,6 +42,7 @@ public class UserInterface {
                 case "ATTACK" -> handleAttack();
                 case "EAT" -> handleEat(argument);
 
+                case "HEALTH", "HP" -> handleHealth();
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
                 case "HELP" -> showHelp();
                 case "EXIT" -> {
@@ -121,7 +122,6 @@ public class UserInterface {
             case NOT_IN_INVENTORY -> IO.println("You do not have a '" + itemName + "' in your inventory.");
             case NOT_A_WEAPON -> IO.println("The " + itemName + " is not a weapon.");
             case SUCCESS -> {
-                // Våbnet hentes for at kunne skrive dets lange navn
                 Weapon equipped = adventure.getEquippedWeapon();
                 IO.println("You have equipped " + equipped.getLongName());
             }
@@ -131,21 +131,17 @@ public class UserInterface {
     // Håndterer ATTACK
     private void handleAttack() {
         AttackStatus status = adventure.attack();
-        // Våbnet og antal skud hentes direkte, nu hvor angrebet er udført
         Weapon weapon = adventure.getEquippedWeapon();
 
         switch (status) {
             case NO_WEAPON_EQUIPPED -> IO.println("You don't have a weapon equipped!");
             case OUT_OF_AMMO -> IO.println("*Click...* The " + weapon.getLongName() + " is out of ammunition.");
             case SUCCESS -> {
-                // -1 betyder nærkampsvåben. Alle andre tal er skud tilbage
                 int remainingUses = weapon.getRemainingUses();
 
                 if (remainingUses == -1) {
-                    // MeleeWeapon (ubegrænset brug)
                     IO.println("You swing " + weapon.getLongName() + " at the empty air.");
                 } else {
-                    // RangedWeapon (begrænset skud)
                     IO.println("You fire " + weapon.getLongName() + " into the empty air. " + remainingUses + " shots left.");
                 }
             }
@@ -154,18 +150,36 @@ public class UserInterface {
 
     // Håndterer EAT <mad>
     public void handleEat(String itemName) {
-        // Maden er væk efter den er spist, så forskellen i health viser hvad den gav
+        if (itemName.isEmpty()) {
+            IO.println("What do you want to eat?");
+            return;
+        }
+
         int healthBefore = adventure.getHealth();
         FoodStatus status = adventure.eat(itemName);
 
         switch (status) {
-            case NOT_FOUND -> IO.println("You don't have that in your inventory or in the room.");
-            case NOT_FOOD -> IO.println("Item is not edible.");
+            case NOT_FOUND -> IO.println("You don't have '" + itemName + "' in your inventory.");
+            case NOT_FOOD -> IO.println("The '" + itemName + "' is not edible!");
             case EATEN -> {
+                int currentHealth = adventure.getHealth();
+                int difference = currentHealth - healthBefore;
 
-
+                if (difference > 0) {
+                    IO.println("You eat the " + itemName + " and restore " + difference + " HP!");
+                } else if (difference < 0) {
+                    IO.println("Ouch! The " + itemName + " was bad or poisonous and dealt " + Math.abs(difference) + " damage!");
+                } else {
+                    IO.println("You eat the " + itemName + ", but feel no change in health.");
+                }
+                IO.println("Current health: " + currentHealth + " HP");
             }
         }
+    }
+
+    // Vis spillerens nuværende helbred
+    private void handleHealth() {
+        IO.println("Current health: " + adventure.getHealth() + " HP");
     }
 
     // Viser hvad spilleren bærer på og hvilket våben der er equipped
@@ -180,29 +194,54 @@ public class UserInterface {
             }
         }
 
-        // Viser equipped våben
         Weapon equipped = adventure.getEquippedWeapon();
         if (equipped != null) {
-            IO.println("Equipped: " + equipped.getLongName());
+            IO.println("Equipped weapon: " + equipped.getLongName());
         } else {
-            IO.println("Equipped: none");
+            IO.println("Equipped weapon: None");
         }
     }
 
-    // Viser alle kommandoer. """ er en tekstblok, så teksten kan stå over flere linjer
+    // Dybdegående oversigt over kommandoer og eksempler
     private void showHelp() {
         IO.println("""
-                --- COMMANDS ---
-                • GO <DIRECTION> / N, S, E, W : Move around the map
-                • LOOK                        : Inspect the current room and items
-                • TAKE <ITEM>                 : Take an item from the room this works like take itemname eg. take iron rod
-                • DROP <ITEM>                 : Drop an item from your inventory works the same as take
-                • EQUIP <WEAPON>              : Equip a weapon from your inventory
-                • ATTACK                      : Use your equipped weapon
-                • EAT <FOOD>                  : Eat food from your inventory. Some food may be poisoned!
-                • INVENTORY / INV             : View carried items and equipped weapon
-                • HELP                        : Show this menu
-                • EXIT                        : Quit the game
+                =================================== GAME HELP & COMMANDS ===================================
+                
+                MOVEMENT:
+                  • GO <DIRECTION> | N, S, E, W
+                    Move north, south, east, or west between rooms.
+                    Example: 'GO NORTH' or simply 'N'
+                
+                ENVIRONMENT & ITEMS:
+                  • LOOK
+                    Re-examine your current room to see its description and items lying on the floor.
+                  • TAKE <ITEM>
+                    Pick up an item from the current room and put it in your inventory.
+                    Example: 'TAKE iron rod'
+                  • DROP <ITEM>
+                    Drop an item from your inventory into the current room.
+                    Example: 'DROP iron rod'
+                
+                COMBAT & SURVIVAL:
+                  • EQUIP <WEAPON>
+                    Equip a weapon from your inventory to prepare it for combat.
+                    Example: 'EQUIP sword'
+                  • ATTACK
+                    Use your currently equipped weapon.
+                  • EAT <FOOD>
+                    Eat a consumable item from your inventory to recover HP (beware of toxic food!).
+                    Example: 'EAT apple'
+                  • HEALTH | HP
+                    Check your current health status and HP remaining.
+                
+                PLAYER STATUS & SYSTEM:
+                  • INVENTORY | INV
+                    Display all items in your possession and your currently equipped weapon.
+                  • HELP
+                    Display this help overview.
+                  • EXIT
+                    Quit the game.
+                ===========================================================================================
                 """);
     }
 }
