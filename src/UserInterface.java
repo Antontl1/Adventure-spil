@@ -172,7 +172,7 @@ public class UserInterface {
                 } else {
                     IO.println("You eat the " + itemName + ", but feel no change in health.");
                 }
-                IO.println("Current health: " + currentHealth + " HP");
+                IO.println("Your current health is now " + currentHealth + " HP");
             }
         }
     }
