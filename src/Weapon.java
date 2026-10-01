@@ -19,6 +19,7 @@ public abstract class Weapon extends Item {
     // Hvor mange skud der er tilbage. -1 betyder ubegrænset
     public abstract int getRemainingUses();
 
+    //skaffer det lange navn med the foran
     public String getTheLongName(){
         return theLongName;
     }
