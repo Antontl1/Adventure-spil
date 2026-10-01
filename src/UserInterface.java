@@ -135,14 +135,14 @@ public class UserInterface {
 
         switch (status) {
             case NO_WEAPON_EQUIPPED -> IO.println("You don't have a weapon equipped!");
-            case OUT_OF_AMMO -> IO.println("*Click...* The " + weapon.getLongName() + " is out of ammunition.");
+            case OUT_OF_AMMO -> IO.println("*Click...* " + weapon.getTheLongName() + " is out of ammunition.");
             case SUCCESS -> {
                 int remainingUses = weapon.getRemainingUses();
 
                 if (remainingUses == -1) {
                     IO.println("You swing " + weapon.getLongName() + " at the empty air.");
                 } else {
-                    IO.println("You fire " + weapon.getLongName() + " into the empty air. " + remainingUses + " shots left.");
+                    IO.println("You fired " + weapon.getTheLongName() + " into the empty air. You have " + remainingUses + " shots left.");
                 }
             }
         }
