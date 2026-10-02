@@ -164,7 +164,6 @@ public class UserInterface {
             case EATEN -> {
                 int currentHealth = adventure.getHealth();
                 int difference = currentHealth - healthBefore;
-
                 if (difference > 0) {
                     IO.println("You eat the " + itemName + " and restore " + difference + " HP!");
                 } else if (difference < 0) {
