@@ -35,18 +35,18 @@ public class Map {
         Item item9 = new Item("coins", "a couple of gold coins", "They are quite shiny. Probably has some value to them"); // Treasure chamber
 
 
-        // Nærkampsvåben: kort navn, langt navn, beskrivelse
-        Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker", "The tip is blackened from years in the fire"); // Entrance Hall
-        Weapon weapon2 = new MeleeWeapon("dagger", "A silver letter dagger", "Hidden inside a hollowed out book. Small, but sharp"); // Library
-        Weapon weapon3 = new MeleeWeapon("axe", "A rusty battle axe", "Heavy and dull, but it will still leave a mark"); // Armoury
-        Weapon weapon4 = new MeleeWeapon("cleaver", "A butcher's cleaver", "Stained with something you would rather not think about"); // Kitchen
-        Weapon weapon5 = new MeleeWeapon("scepter", "A golden scepter", "Made for ruling, but heavy enough to swing"); // Throne Room
-        Weapon weapon6 = new MeleeWeapon("whip", "A leather whip", "Once used by the guards. It cracks loudly in the silence"); // Dungeon
-        Weapon weapon8 = new MeleeWeapon("spear", "A guard's spear", "Taken from a rack on the wall. Long enough to keep enemies away"); // Hallway
+        // Nærkampsvåben: kort navn, langt navn, et langt navn med the foran, beskrivelse
+        Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker","The heavy fireplace poker","The tip is blackened from years in the fire"); // Entrance Hall
+        Weapon weapon2 = new MeleeWeapon("dagger", "A silver letter dagger","The silver letter dagger","Hidden inside a hollowed out book. Small, but sharp"); // Library
+        Weapon weapon3 = new MeleeWeapon("axe", "A rusty battle axe","The rusty battle axe","Heavy and dull, but it will still leave a mark"); // Armoury
+        Weapon weapon4 = new MeleeWeapon("cleaver", "A butcher's cleaver","The butcher's cleaver","Stained with something you would rather not think about"); // Kitchen
+        Weapon weapon5 = new MeleeWeapon("scepter", "A golden scepter","the golden scepter","Made for ruling, but heavy enough to swing"); // Throne Room
+        Weapon weapon6 = new MeleeWeapon("whip", "A leather whip","The leather whip","Once used by the guards. It cracks loudly in the silence"); // Dungeon
+        Weapon weapon8 = new MeleeWeapon("spear", "A guard's spear","The guard's spear","Taken from a rack on the wall. Long enough to keep enemies away"); // Hallway
 
-        // Skydevåben: kort navn, langt navn, beskrivelse, antal skud
-        Weapon weapon7 = new RangedWeapon("slingshot", "A wooden slingshot", "Pebbles from the dry fountain would make good ammo", 10); // Garden
-        Weapon weapon9 = new RangedWeapon("bow", "An ornate longbow", "Decorated with gold. A quiver of arrows lies next to it", 5); // Treasure Chamber
+        // Skydevåben: kort navn, langt navn, et langt navn med the foran, beskrivelse, antal skud
+        Weapon weapon7 = new RangedWeapon("slingshot", "A wooden slingshot","The wooden slingshot","Pebbles from the dry fountain would make good ammo", 10); // Garden
+        Weapon weapon9 = new RangedWeapon("bow", "An ornate longbow","the ornate longbow", "Decorated with gold. A quiver of arrows lies next to it", 5); // Treasure Chamber
 
         // Mad: kort navn, langt navn, beskrivelse, healthPoints. Negativt tal betyder gift
         Food food1 = new Food("biscuit", "A dry biscuit", "Left on a side table. Stale, but still edible", 5); // Entrance Hall
@@ -58,6 +58,26 @@ public class Map {
         Food food7 = new Food("apple", "A red apple", "Fallen from an overgrown tree by the fountain", 8); // Garden
         Food food8 = new Food("cheese", "A wedge of cheese", "The rats have not found it yet", 6); // Hallway
         Food food9 = new Food("cake", "A golden honey cake", "Fit for a king and hidden among the treasure", 25); // Treasure Chamber
+
+        // Fjender: navn, beskrivelse, health, våben. Hver fjende får sit eget våben
+        Enemy enemy1 = new Enemy("skeleton", "A rattling skeleton guards the entrance, its jaw clicking as it turns towards you", 20,
+                new MeleeWeapon("shortsword", "A chipped shortsword", "The chipped shortsword", "Old and notched, but still sharp")); // Entrance Hall
+        Enemy enemy2 = new Enemy("ghost", "The ghost of a librarian drifts between the shelves and hisses for silence", 25,
+                new MeleeWeapon("tome", "A heavy leather tome", "The heavy leather tome", "Thick enough to knock someone out")); // Library
+        Enemy enemy3 = new Enemy("knight", "An empty suit of armour stands up by itself and raises its sword", 40,
+                new MeleeWeapon("longsword", "A knight's longsword", "The knight's longsword", "Polished and well balanced, unlike everything else in here")); // Armoury
+        Enemy enemy4 = new Enemy("cook", "An undead cook stirs a pot of something that should not be eaten", 30,
+                new MeleeWeapon("hook", "A rusty meat hook", "The rusty meat hook", "Still dripping. Better not ask what from")); // Kitchen
+        Enemy enemy5 = new Enemy("king", "The cursed king sits on the throne after all, pale and furious at your intrusion", 60,
+                new RangedWeapon("crossbow", "A royal crossbow", "The royal crossbow", "Engraved with the royal crest", 6)); // Throne Room
+        Enemy enemy6 = new Enemy("jailer", "A huge jailer blocks the cells, swinging his keys and a club", 35,
+                new MeleeWeapon("club", "A wooden club", "The wooden club", "Studded with iron nails")); // Dungeon
+        Enemy enemy7 = new Enemy("goblin", "A small goblin hides in the bushes and giggles as you walk by", 15,
+                new RangedWeapon("darts", "A pouch of poison darts", "The pouch of poison darts", "Tiny darts with green tips", 8)); // Garden
+        Enemy enemy8 = new Enemy("guard", "A tired guard patrols the hallway and stops when he sees you", 30,
+                new MeleeWeapon("halberd", "A long halberd", "The long halberd", "Half axe, half spear, all trouble")); // Hallway
+        Enemy enemy9 = new Enemy("golem", "A golem made of melted gold coins rises from the treasure pile", 80,
+                new MeleeWeapon("fists", "A pair of golden fists", "The golden fists", "Heavy as anvils and twice as hard")); // Treasure Chamber
 
         //tilføj items til rum
         room1.addItem(item1);
@@ -91,6 +111,17 @@ public class Map {
         room7.addItem(food7);
         room8.addItem(food8);
         room9.addItem(food9);
+
+        //tilføj fjender til rum
+        room1.addEnemy(enemy1);
+        room2.addEnemy(enemy2);
+        room3.addEnemy(enemy3);
+        room4.addEnemy(enemy4);
+        room5.addEnemy(enemy5);
+        room6.addEnemy(enemy6);
+        room7.addEnemy(enemy7);
+        room8.addEnemy(enemy8);
+        room9.addEnemy(enemy9);
 
         // Spilleren starter i det første rum
         firstRoom = room1;

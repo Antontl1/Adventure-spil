@@ -3,8 +3,8 @@ public class RangedWeapon extends Weapon {
     private int uses; // Antal resterende skud/magasin
 
     // De tre tekster går videre til Weapon. Antal skud gemmer RangedWeapon selv
-    public RangedWeapon(String shortName, String longName, String itemDescription, int uses) {
-        super(shortName, longName, itemDescription);
+    public RangedWeapon(String shortName, String longName, String theLongName, String itemDescription, int uses) {
+        super(shortName, longName, theLongName, itemDescription);
         this.uses = uses;
     }
 

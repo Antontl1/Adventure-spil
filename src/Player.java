@@ -4,6 +4,7 @@ import java.util.ArrayList;
 public class Player {
     private Room currentRoom;
     // Spillerens liv. Starter på 100 og ændres, når han spiser
+    int maxHealth = 100;
     int health = 100;
     // Tom fra start. Fyldes når spilleren tager ting
     private ArrayList<Item> inventory = new ArrayList<>();

@@ -1,10 +1,12 @@
 // Fælles superklasse for alle våben. Abstrakt, så man kan ikke lave et "Weapon", kun et nærkamps- eller skydevåben.
 // Arver fra Item, så et våben kan ligge i et rum og samles op som alle andre ting
 public abstract class Weapon extends Item {
+    String theLongName;
 
     // Sender teksterne videre til Item
-    public Weapon(String shortName, String longName, String itemDescription) {
+    public Weapon(String shortName, String longName, String theLongName, String itemDescription) {
         super(shortName, longName, itemDescription);
+        this.theLongName = theLongName;
     }
 
     // Returnerer true hvis våbenet kan bruges
@@ -16,4 +18,9 @@ public abstract class Weapon extends Item {
 
     // Hvor mange skud der er tilbage. -1 betyder ubegrænset
     public abstract int getRemainingUses();
+
+    //skaffer det lange navn med the foran
+    public String getTheLongName(){
+        return theLongName;
+    }
 }
