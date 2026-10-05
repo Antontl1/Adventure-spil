@@ -146,17 +146,13 @@ public class UserInterface {
                     IO.println("You fired " + weapon.getTheLongName() + " and killed the " + enemy.name + ". You have " + remainingUses + " shots left.");
                 }
             }
-             SUCCESS_ENEMY_SURVIVED-> {
-                 int remainingUses = weapon.getRemainingUses();
-                 if (remainingUses == -1) {
-                     IO.println("You swing " + weapon.getLongName() + " and dealt " + + " damage, the enemy has" + + " health left");
-                 } else {
-                     IO.println("You fired " + weapon.getTheLongName() + " and dealt " + + " damage, the enemy has" + + " health left. You have " + remainingUses + " shots left.");
-                 }
-
-            }
-            }
-            }
+            SUCCESS_ENEMY_SURVIVED -> {
+                int remainingUses = weapon.getRemainingUses();
+                if (remainingUses == -1) {
+                    IO.println("You swing " + weapon.getLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.remaningHealth + " health left");
+                } else {
+                    IO.println("You fired " + weapon.getTheLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.remainingHealth + " health left. You have " + remainingUses + " shots left.");
+                }
             }
         }
     }
