@@ -59,25 +59,16 @@ public class Map {
         Food food8 = new Food("cheese", "A wedge of cheese", "The rats have not found it yet", 6); // Hallway
         Food food9 = new Food("cake", "A golden honey cake", "Fit for a king and hidden among the treasure", 25); // Treasure Chamber
 
-        // Fjender: navn, beskrivelse, health, våben. Hver fjende får sit eget våben
-        Enemy enemy1 = new Enemy("skeleton", "A rattling skeleton guards the entrance, its jaw clicking as it turns towards you", 20,
-                new MeleeWeapon("shortsword", "A chipped shortsword", "The chipped shortsword", "Old and notched, but still sharp")); // Entrance Hall
-        Enemy enemy2 = new Enemy("ghost", "The ghost of a librarian drifts between the shelves and hisses for silence", 25,
-                new MeleeWeapon("tome", "A heavy leather tome", "The heavy leather tome", "Thick enough to knock someone out")); // Library
-        Enemy enemy3 = new Enemy("knight", "An empty suit of armour stands up by itself and raises its sword", 40,
-                new MeleeWeapon("longsword", "A knight's longsword", "The knight's longsword", "Polished and well balanced, unlike everything else in here")); // Armoury
-        Enemy enemy4 = new Enemy("cook", "An undead cook stirs a pot of something that should not be eaten", 30,
-                new MeleeWeapon("hook", "A rusty meat hook", "The rusty meat hook", "Still dripping. Better not ask what from")); // Kitchen
-        Enemy enemy5 = new Enemy("king", "The cursed king sits on the throne after all, pale and furious at your intrusion", 60,
-                new RangedWeapon("crossbow", "A royal crossbow", "The royal crossbow", "Engraved with the royal crest", 6)); // Throne Room
-        Enemy enemy6 = new Enemy("jailer", "A huge jailer blocks the cells, swinging his keys and a club", 35,
-                new MeleeWeapon("club", "A wooden club", "The wooden club", "Studded with iron nails")); // Dungeon
-        Enemy enemy7 = new Enemy("goblin", "A small goblin hides in the bushes and giggles as you walk by", 15,
-                new RangedWeapon("darts", "A pouch of poison darts", "The pouch of poison darts", "Tiny darts with green tips", 8)); // Garden
-        Enemy enemy8 = new Enemy("guard", "A tired guard patrols the hallway and stops when he sees you", 30,
-                new MeleeWeapon("halberd", "A long halberd", "The long halberd", "Half axe, half spear, all trouble")); // Hallway
-        Enemy enemy9 = new Enemy("golem", "A golem made of melted gold coins rises from the treasure pile", 80,
-                new MeleeWeapon("fists", "A pair of golden fists", "The golden fists", "Heavy as anvils and twice as hard")); // Treasure Chamber
+        // Fjender: navn, beskrivelse, health
+        Enemy enemy1 = new Enemy("skeleton", "A rattling skeleton guards the entrance, its jaw clicking as it turns towards you", 20); // Entrance Hall
+        Enemy enemy2 = new Enemy("ghost", "The ghost of a librarian drifts between the shelves and hisses for silence", 25); // Library
+        Enemy enemy3 = new Enemy("knight", "An empty suit of armour stands up by itself and raises its sword", 40); // Armoury
+        Enemy enemy4 = new Enemy("cook", "An undead cook stirs a pot of something that should not be eaten", 30); // Kitchen
+        Enemy enemy5 = new Enemy("king", "The cursed king sits on the throne after all, pale and furious at your intrusion", 60); // Throne Room
+        Enemy enemy6 = new Enemy("jailer", "A huge jailer blocks the cells, swinging his keys and a club", 35); // Dungeon
+        Enemy enemy7 = new Enemy("goblin", "A small goblin hides in the bushes and giggles as you walk by", 15); // Garden
+        Enemy enemy8 = new Enemy("guard", "A tired guard patrols the hallway and stops when he sees you", 30); // Hallway
+        Enemy enemy9 = new Enemy("golem", "A golem made of melted gold coins rises from the treasure pile", 80); // Treasure Chamber
 
         //tilføj items til rum
         room1.addItem(item1);
