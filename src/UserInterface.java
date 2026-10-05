@@ -39,7 +39,7 @@ public class UserInterface {
                 case "DROP" -> handleDrop(argument);
 
                 case "EQUIP" -> handleEquip(argument);
-                case "ATTACK" -> handleAttack();
+                case "ATTACK" -> handleAttack(argument);
                 case "EAT" -> handleEat(argument);
 
                 case "HEALTH", "HP" -> handleHealth();
@@ -129,8 +129,8 @@ public class UserInterface {
     }
 
     // Håndterer ATTACK
-    private void handleAttack() {
-        AttackStatus status = adventure.attack();
+    private void handleAttack(String enemyName) {
+        AttackStatus status = adventure.attack(enemyName);
         Weapon weapon = adventure.getEquippedWeapon();
 
         switch (status) {
@@ -149,9 +149,9 @@ public class UserInterface {
             SUCCESS_ENEMY_SURVIVED -> {
                 int remainingUses = weapon.getRemainingUses();
                 if (remainingUses == -1) {
-                    IO.println("You swing " + weapon.getLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.remaningHealth + " health left");
+                    IO.println("You swing " + weapon.getLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.getHealth() + " health left");
                 } else {
-                    IO.println("You fired " + weapon.getTheLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.remainingHealth + " health left. You have " + remainingUses + " shots left.");
+                    IO.println("You fired " + weapon.getTheLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.getHealth() + " health left. You have " + remainingUses + " shots left.");
                 }
             }
         }
