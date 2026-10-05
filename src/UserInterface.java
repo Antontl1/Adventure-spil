@@ -138,14 +138,25 @@ public class UserInterface {
             case WEAPON_OUT_OF_AMMO -> IO.println("You dont have any ammo..");
             case NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY -> IO.println("Specify a enemy in the room first");
             case ENEMY_NOT_FOUND -> IO.println("The enemey wasent found, be its in the room");
-            case SUCCESS_ENEMY_KILLED -> IO.println("You killed the enemy");
-             SUCCESS_ENEMY_SURVIVED-> {
+            case SUCCESS_ENEMY_KILLED -> {
                 int remainingUses = weapon.getRemainingUses();
                 if (remainingUses == -1) {
-                    IO.println("You swing " + weapon.getLongName() + " at the empty air.");
+                    IO.println("You killed the enemy");
                 } else {
-                    IO.println("You fired " + weapon.getTheLongName() + " into the empty air. You have " + remainingUses + " shots left.");
+                    IO.println("You fired " + weapon.getTheLongName() + " and killed the " + enemy.name + ". You have " + remainingUses + " shots left.");
                 }
+            }
+             SUCCESS_ENEMY_SURVIVED-> {
+                 int remainingUses = weapon.getRemainingUses();
+                 if (remainingUses == -1) {
+                     IO.println("You swing " + weapon.getLongName() + " and dealt " + + " damage, the enemy has" + + " health left");
+                 } else {
+                     IO.println("You fired " + weapon.getTheLongName() + " and dealt " + + " damage, the enemy has" + + " health left. You have " + remainingUses + " shots left.");
+                 }
+
+            }
+            }
+            }
             }
         }
     }
