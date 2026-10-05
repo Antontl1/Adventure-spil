@@ -1,11 +1,12 @@
 public class Enemy {
+    String knight;
 
 
-    public Enemy(String knight, String s, int i, MeleeWeapon meleeWeapon) {
+    public Enemy(String knight, String s, int healthPoints, MeleeWeapon meleeWeapon) {
 
     }
 
-    public Enemy(String knight, String s, int i, RangedWeapon rangedWeapon) {
+    public Enemy(String knight, String s, int healthPoints, RangedWeapon rangedWeapon) {
 
     }
 }
