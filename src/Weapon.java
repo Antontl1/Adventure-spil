@@ -2,13 +2,13 @@
 // Arver fra Item, så et våben kan ligge i et rum og samles op som alle andre ting
 public abstract class Weapon extends Item {
     String theLongName;
-    int WeaponPower;
+    int weaponPower;
 
     // Sender teksterne videre til Item
-    public Weapon(String shortName, String longName, String theLongName, String itemDescription, int WeaponPower) {
+    public Weapon(String shortName, String longName, String theLongName, String itemDescription, int weaponPower) {
         super(shortName, longName, itemDescription);
         this.theLongName = theLongName;
-        this.WeaponPower = WeaponPower;
+        this.weaponPower = weaponPower;
     }
 
     // Returnerer true hvis våbenet kan bruges
@@ -24,5 +24,9 @@ public abstract class Weapon extends Item {
     //skaffer det lange navn med the foran
     public String getTheLongName(){
         return theLongName;
+    }
+
+    public int getDamage(){
+        return weaponPower;
     }
 }
