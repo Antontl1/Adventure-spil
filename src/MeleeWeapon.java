@@ -2,8 +2,8 @@
 public class MeleeWeapon extends Weapon {
 
     // Har ingen ekstra felter, så alt sendes videre til Weapon
-    public MeleeWeapon(String shortName, String longName, String theLongName, String itemDescription) {
-        super(shortName, longName, theLongName, itemDescription);
+    public MeleeWeapon(String shortName, String longName, String theLongName, String itemDescription, int weaponPower) {
+        super(shortName, longName, theLongName, itemDescription, weaponPower);
     }
 
     @Override
