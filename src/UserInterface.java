@@ -134,11 +134,13 @@ public class UserInterface {
         Weapon weapon = adventure.getEquippedWeapon();
 
         switch (status) {
-            case NO_WEAPON_EQUIPPED -> IO.println("You don't have a weapon equipped!");
-            case OUT_OF_AMMO -> IO.println("*Click...* " + weapon.getTheLongName() + " is out of ammunition.");
-            case SUCCESS -> {
+            case NO_WEAPON -> IO.println("You dont have any weapon..");
+            case WEAPON_OUT_OF_AMMO -> IO.println("You dont have any ammo..");
+            case NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY -> IO.println("Specify a enemy in the room first");
+            case ENEMY_NOT_FOUND -> IO.println("The enemey wasent found, be its in the room");
+            case SUCCESS_ENEMY_KILLED -> IO.println("You killed the enemy");
+             SUCCESS_ENEMY_SURVIVED-> {
                 int remainingUses = weapon.getRemainingUses();
-
                 if (remainingUses == -1) {
                     IO.println("You swing " + weapon.getLongName() + " at the empty air.");
                 } else {
