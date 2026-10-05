@@ -47,8 +47,8 @@ public class Adventure {
         return player.equipItem(itemName);
     }
 
-    public AttackStatus attack() {
-        return player.attack();
+    public AttackStatus attack(String enemyName) {
+        return player.attack(enemyName);
     }
 
     // Det våben spilleren har i hånden. null hvis han ikke har equipped noget

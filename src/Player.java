@@ -60,20 +60,43 @@ public class Player {
         }
     }
 
-    // Angriber ud i luften med det equippede våben
+    // Angriber en fjende i rummet. Uden navn rammes den første fjende i rummet
     // Ved ikke om det er nærkamp eller skydevåben. canUse() og use() svarer forskelligt alt efter subklassen
-    public AttackStatus attack() {
+    public AttackStatus attack(String enemyName) {
         if (equippedWeapon == null) {
-            return AttackStatus.NO_WEAPON_EQUIPPED;
+            return AttackStatus.NO_WEAPON;
         }
 
         if (!equippedWeapon.canUse()) {
-            return AttackStatus.OUT_OF_AMMO;
+            return AttackStatus.WEAPON_OUT_OF_AMMO;
+        }
+
+        // Find fjenden først, så der ikke bruges et skud, hvis der ikke er noget at ramme
+        Enemy enemy;
+        if (enemyName.isEmpty()) {
+            if (currentRoom.getEnemies().isEmpty()) {
+                return AttackStatus.NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY;
+            }
+            enemy = currentRoom.getEnemies().get(0);
+        } else {
+            enemy = currentRoom.findEnemy(enemyName);
+            if (enemy == null) {
+                return AttackStatus.ENEMY_NOT_FOUND;
+            }
         }
 
         // use() tæller et skud ned på skydevåben. Nærkampsvåben gør ingenting
         equippedWeapon.use();
-        return AttackStatus.SUCCESS;
+        // takeDamage fjerner selv fjenden fra rummet og taber dens våben, hvis den dør
+        enemy.takeDamage(equippedWeapon.getDamage());
+
+        if (!enemy.isAlive()) {
+            return AttackStatus.SUCCESS_ENEMY_KILLED;
+        }
+
+        // Fjenden overlevede og slår igen
+        enemy.attack(this);
+        return AttackStatus.SUCCESS_ENEMY_SURVIVED;
     }
 
     // --- EAT ---
