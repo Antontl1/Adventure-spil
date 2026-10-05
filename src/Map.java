@@ -60,15 +60,15 @@ public class Map {
         Food food9 = new Food("cake", "A golden honey cake", "Fit for a king and hidden among the treasure", 25); // Treasure Chamber
 
         // Fjender: navn, beskrivelse, health
-        Enemy enemy1 = new Enemy("skeleton", "A rattling skeleton guards the entrance, its jaw clicking as it turns towards you", 20); // Entrance Hall
-        Enemy enemy2 = new Enemy("ghost", "The ghost of a librarian drifts between the shelves and hisses for silence", 25); // Library
-        Enemy enemy3 = new Enemy("knight", "An empty suit of armour stands up by itself and raises its sword", 40); // Armoury
-        Enemy enemy4 = new Enemy("cook", "An undead cook stirs a pot of something that should not be eaten", 30); // Kitchen
-        Enemy enemy5 = new Enemy("king", "The cursed king sits on the throne after all, pale and furious at your intrusion", 60); // Throne Room
-        Enemy enemy6 = new Enemy("jailer", "A huge jailer blocks the cells, swinging his keys and a club", 35); // Dungeon
-        Enemy enemy7 = new Enemy("goblin", "A small goblin hides in the bushes and giggles as you walk by", 15); // Garden
-        Enemy enemy8 = new Enemy("guard", "A tired guard patrols the hallway and stops when he sees you", 30); // Hallway
-        Enemy enemy9 = new Enemy("golem", "A golem made of melted gold coins rises from the treasure pile", 80); // Treasure Chamber
+        Enemy enemy1 = new Enemy("skeleton", "The skeleton","A rattling skeleton guards the entrance, its jaw clicking as it turns towards you", 20, weapon8,room1); // Entrance Hall
+        Enemy enemy2 = new Enemy("ghost", "The ghost","The ghost of a librarian drifts between the shelves and hisses for silence", 25, weapon9 ,room2); // Library
+        Enemy enemy3 = new Enemy("knight", "The knight","An empty suit of armour stands up by itself and raises its sword", 40, weapon9 ,room3); // Armoury
+        Enemy enemy4 = new Enemy("cook", "The cook","An undead cook stirs a pot of something that should not be eaten", 30, weapon9 ,room4); // Kitchen
+        Enemy enemy5 = new Enemy("king", "The evil king","The cursed king sits on the throne after all, pale and furious at your intrusion", 60, weapon9 ,room5); // Throne Room
+        Enemy enemy6 = new Enemy("jailer", "the jailer","A huge jailer blocks the cells, swinging his keys and a club", 35, weapon9 ,room6); // Dungeon
+        Enemy enemy7 = new Enemy("goblin", "the goblin","A small goblin hides in the bushes and giggles as you walk by", 15, weapon9 ,room7); // Garden
+        Enemy enemy8 = new Enemy("guard", "the guard","A tired guard patrols the hallway and stops when he sees you", 30, weapon9 ,room8); // Hallway
+        Enemy enemy9 = new Enemy("golem", "the golem","A golem made of melted gold coins rises from the treasure pile", 80, weapon9 ,room9); // Treasure Chamber
 
         //tilføj items til rum
         room1.addItem(item1);
