@@ -3,6 +3,7 @@ import java.util.ArrayList;
 // Snakker med brugeren: læser kommandoer og printer svar. Kender kun Adventure
 public class UserInterface {
     private Adventure adventure;
+    private Enemy enemy;
 
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;
@@ -143,15 +144,15 @@ public class UserInterface {
                 if (remainingUses == -1) {
                     IO.println("You killed the enemy");
                 } else {
-                    IO.println("You fired " + weapon.getTheLongName() + " and killed the " + enemy.name + ". You have " + remainingUses + " shots left.");
+                    IO.println("You fired " + weapon.getTheLongName() + " and killed the " + enemy.getLongName() + ". You have " + remainingUses + " shots left.");
                 }
             }
-            SUCCESS_ENEMY_SURVIVED -> {
+            case SUCCESS_ENEMY_SURVIVED -> {
                 int remainingUses = weapon.getRemainingUses();
                 if (remainingUses == -1) {
-                    IO.println("You swing " + weapon.getLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.remaningHealth + " health left");
+                    IO.println("You swing " + weapon.getLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" +  enemy.getHealth() + " health left");
                 } else {
-                    IO.println("You fired " + weapon.getTheLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.remainingHealth + " health left. You have " + remainingUses + " shots left.");
+                    IO.println("You fired " + weapon.getTheLongName() + " and dealt " + weapon.getDamage() + " damage, the enemy has" + enemy.getHealth() + " health left. You have " + remainingUses + " shots left.");
                 }
             }
         }
