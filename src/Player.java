@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 // Holder styr på hvor spilleren står, og hvad han bærer på
 public class Player {
+    private Player player;
     private Room currentRoom;
     // Spillerens liv. Starter på 100 og ændres, når han spiser
     int maxHealth = 100;
@@ -13,6 +14,7 @@ public class Player {
 
     public Player(Room currentRoom) {
         this.currentRoom = currentRoom;
+        this.player = player;
     }
 
     public Room getCurrentRoom() {
@@ -29,6 +31,10 @@ public class Player {
 
     public int getHealth() {
         return health;
+    }
+
+    public void takeDamage(Enemy enemy){
+        health = health - enemy.getWeapon().weaponPower;
     }
 
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
@@ -95,7 +101,7 @@ public class Player {
         }
 
         // Fjenden overlevede og slår igen
-        enemy.attack(this);
+        enemy.attack(Player player, Enemy enemyName);
         return AttackStatus.SUCCESS_ENEMY_SURVIVED;
     }
 
