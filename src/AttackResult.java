@@ -28,14 +28,14 @@ public class AttackResult {
             case ENEMY_NOT_FOUND -> "There is no enemy called '" + enemyName + "' here.";
             case SUCCESS_ENEMY_KILLED -> {
                 String msg = "You hit the " + enemyName + " for " + damageDealt + " damage.\n" +
-                        "The " + enemyName + " dies!";
+                        "The " + enemyName + " died!";
                 if (droppedWeapon != null) {
                     msg += " It dropped its " + droppedWeapon.getShortName() + ".";
                 }
                 yield msg;
             }
             case SUCCESS_ENEMY_SURVIVED -> {
-                String msg = "You hit the " + enemyName + " for " + damageDealt + " damage (Health left: " + enemyHealthRemaining + ").\n" +
+                String msg = "You hit the " + enemyName + " for " + damageDealt + " damage (Health left: " + enemyHealthRemaining + " HP).\n" +
                         "The " + enemyName + " attacks back and deals " + damageReceived + " damage to you!";
                 if (playerDied) {
                     msg += "\nYou have succumbed to your injuries...";

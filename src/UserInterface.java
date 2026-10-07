@@ -151,7 +151,7 @@ public class UserInterface {
         IO.println(result.getFormattedMessage());
 
         if (result.isPlayerDied()) {
-            IO.println("\n*** YOU DIED FROM POISON! GAME OVER ***");
+            IO.println("\n*** YOU DIED FROM POISONING! GAME OVER ***");
             return false;
         }
         return true;
