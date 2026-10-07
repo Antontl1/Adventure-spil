@@ -100,7 +100,7 @@ public class Player {
         }
 
         // Fjenden overlevede og slår igen
-        enemy.attack();
+        enemy.attack(this);
         return AttackStatus.SUCCESS_ENEMY_SURVIVED;
     }
 

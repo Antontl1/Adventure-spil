@@ -8,7 +8,6 @@ public class Enemy {
     private final Weapon weapon;
     // Rummet fjenden står i. Bruges, når den dør og skal fjernes
     private Room currentRoom;
-    private Player player;
 
     public Enemy(String shortName, String longName, String description, int health, Weapon weapon, Room currentRoom) {
         this.shortName = shortName;
@@ -54,7 +53,7 @@ public class Enemy {
     }
 
     // Fjenden slår spilleren med sit våben og returnerer, hvor meget skade den gjorde
-    public int attack() {
+    public int attack(Player player) {
         if (isAlive() && weapon != null) {
             int damage = weapon.getDamage();
             player.takeDamage(damage);
