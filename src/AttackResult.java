@@ -1,3 +1,5 @@
+    // Samler alt om ét angreb i ét objekt: hvordan det gik, hvor meget skade hver side tog,
+    // og om spilleren døde. Bruges ikke endnu, attack() returnerer kun AttackStatus
     public class AttackResult {
         private AttackStatus status;
         private String enemyName;
@@ -20,6 +22,7 @@
         public AttackStatus getStatus() { return status; }
         public boolean isPlayerDied() { return playerDied; }
 
+        // Bygger beskeden til spilleren. switch med yield giver en værdi tilbage i stedet for at printe
         public String getFormattedMessage() {
             return switch (status) {
                 case NO_WEAPON -> "You don't have a weapon equipped!";

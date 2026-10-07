@@ -12,7 +12,7 @@ public class UserInterface {
     // Spillets løkke. Kører indtil brugeren skriver EXIT
     public void runGame() {
         boolean gameIsRunning = true;
-
+        IO.println();
         IO.println("Welcome to The Adventure Game! You find yourself in the darkest of dungeons ...");
         IO.println("Type HELP to see available commands.\n");
         IO.println(adventure.look());
@@ -41,7 +41,7 @@ public class UserInterface {
                 case "DROP" -> handleDrop(argument);
 
                 case "EQUIP" -> handleEquip(argument);
-                case "ATTACK" -> handleAttack();
+                case "ATTACK" -> handleAttack(argument);
                 case "EAT" -> handleEat(argument);
 
                 case "HEALTH", "HP" -> handleHealth();
@@ -134,9 +134,9 @@ public class UserInterface {
         }
     }
 
-    // Håndterer ATTACK
-    private void handleAttack() {
-        AttackStatus status = adventure.attack(String );
+    // Håndterer ATTACK <fjende>. Uden navn rammes den første fjende i rummet
+    private void handleAttack(String enemyName) {
+        AttackStatus status = adventure.attack(enemyName);
         Weapon weapon = adventure.getEquippedWeapon();
 
         switch (status) {
@@ -145,6 +145,7 @@ public class UserInterface {
             case NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY -> IO.println("Specify a enemy in the room first");
             case ENEMY_NOT_FOUND -> IO.println("The enemey wasent found, be its in the room");
             case SUCCESS_ENEMY_KILLED -> {
+                // -1 betyder nærkampsvåben. Alle andre tal er skud tilbage
                 int remainingUses = weapon.getRemainingUses();
                 if (remainingUses == -1) {
                     IO.println("You killed the enemy");

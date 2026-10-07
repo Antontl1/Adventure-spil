@@ -3,7 +3,7 @@ import java.util.ArrayList;
 // Holder styr på hvor spilleren står, og hvad han bærer på
 public class Player {
     private Room currentRoom;
-    // Spillerens liv. Starter på 100 og ændres, når han spiser
+    // Spillerens liv. Starter på 100 og ændres, når han spiser eller bliver ramt
     int maxHealth = 100;
     int health = 100;
     // Tom fra start. Fyldes når spilleren tager ting
@@ -31,6 +31,7 @@ public class Player {
         return health;
     }
 
+    // Kaldes af Enemy, når den slår igen
     public void takeDamage(int amount) {
         this.health -= amount;
     }
@@ -99,7 +100,7 @@ public class Player {
         }
 
         // Fjenden overlevede og slår igen
-        enemy.attack(this);
+        enemy.attack();
         return AttackStatus.SUCCESS_ENEMY_SURVIVED;
     }
 
@@ -176,6 +177,8 @@ public class Player {
         currentRoom = room;
         return true;
     }
+
+    // Bruges til at afgøre, om spillet er slut
     public boolean isDead(){
        return this.health <= 0;
     }

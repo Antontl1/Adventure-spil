@@ -68,11 +68,14 @@ public class Adventure {
 
     // Henter rummets navn, beskrivelse, udgange og genstande
     public String look() {
+        IO.print("You are in the ");
         Room currentRoom = player.getCurrentRoom();
         return currentRoom.getName() + "\n" +
                 currentRoom.getDescription() + "\n" +
                 currentRoom.getExits() + "\n\n" +
-                currentRoom.getFormattedItems();
+                currentRoom.getFormattedItems() + "\n" +
+                currentRoom.getFormattedEnemies();
+
     }
 
     public boolean playerIsDead() {
