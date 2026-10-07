@@ -36,13 +36,13 @@ public class Map {
 
 
         // Nærkampsvåben: kort navn, langt navn, et langt navn med the foran, beskrivelse, skadestyrke
-        Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker","The heavy fireplace poker","The tip is blackened from years in the fire",20); // Entrance Hall
-        Weapon weapon2 = new MeleeWeapon("dagger", "A silver letter dagger","The silver letter dagger","Hidden inside a hollowed out book. Small, but sharp",20); // Library
-        Weapon weapon3 = new MeleeWeapon("axe", "A rusty battle axe","The rusty battle axe","Heavy and dull, but it will still leave a mark",20); // Armoury
-        Weapon weapon4 = new MeleeWeapon("cleaver", "A butcher's cleaver","The butcher's cleaver","Stained with something you would rather not think about",20); // Kitchen
-        Weapon weapon5 = new MeleeWeapon("scepter", "A golden scepter","the golden scepter","Made for ruling, but heavy enough to swing",20); // Throne Room
-        Weapon weapon6 = new MeleeWeapon("whip", "A leather whip","The leather whip","Once used by the guards. It cracks loudly in the silence",20); // Dungeon
-        Weapon weapon8 = new MeleeWeapon("spear", "A guard's spear","The guard's spear","Taken from a rack on the wall. Long enough to keep enemies away",20); // Hallway
+        Weapon weapon1 = new MeleeWeapon("poker", "A heavy fireplace poker","The heavy fireplace poker","The tip is blackened from years in the fire",7); // Entrance Hall
+        Weapon weapon2 = new MeleeWeapon("dagger", "A silver letter dagger","The silver letter dagger","Hidden inside a hollowed out book. Small, but sharp",10); // Library
+        Weapon weapon3 = new MeleeWeapon("axe", "A rusty battle axe","The rusty battle axe","Heavy and dull, but it will still leave a mark",12); // Armoury
+        Weapon weapon4 = new MeleeWeapon("cleaver", "A butcher's cleaver","The butcher's cleaver","Stained with something you would rather not think about",15); // Kitchen
+        Weapon weapon5 = new MeleeWeapon("scepter", "A golden scepter","the golden scepter","Made for ruling, but heavy enough to swing",6); // Throne Room
+        Weapon weapon6 = new MeleeWeapon("whip", "A leather whip","The leather whip","Once used by the guards. It cracks loudly in the silence",9); // Dungeon
+        Weapon weapon8 = new MeleeWeapon("spear", "A guard's spear","The guard's spear","Taken from a rack on the wall. Long enough to keep enemies away",16); // Hallway
 
         // Skydevåben: kort navn, langt navn, et langt navn med the foran, beskrivelse, skadestyrke, antal skud
         Weapon weapon7 = new RangedWeapon("slingshot", "A wooden slingshot","The wooden slingshot","Pebbles from the dry fountain would make good ammo", 5, 10); // Garden
