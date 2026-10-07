@@ -47,10 +47,10 @@ public class Enemy {
         }
     }
 
-    public int attack(Player player) {
+    public int attack(Player player, Enemy enemyName) {
         if (isAlive() && weapon != null) {
             int damage = weapon.getDamage();
-            player.takeDamage(damage);
+            player.takeDamage(enemyName);
             return damage;
         }
         return 0;
