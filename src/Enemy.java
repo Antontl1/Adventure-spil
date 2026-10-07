@@ -15,25 +15,11 @@ public class Enemy {
         this.currentRoom = currentRoom;
     }
 
-    public String getShortName() {
-        return shortName;
-    }
-
-    public String getLongName() {
-        return longName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public Weapon getWeapon() {
-        return weapon;
-    }
+    public String getShortName() { return shortName; }
+    public String getLongName() { return longName; }
+    public String getDescription() { return description; }
+    public int getHealth() { return health; }
+    public Weapon getWeapon() { return weapon; }
 
     public boolean isAlive() {
         return health > 0;

@@ -1,22 +1,20 @@
-// Nærkampsvåben. Må kun bruges i Map til at oprette våben, alle andre steder hedder det Weapon
 public class MeleeWeapon extends Weapon {
-
-    // Har ingen ekstra felter, så alt sendes videre til Weapon
     public MeleeWeapon(String shortName, String longName, String theLongName, String itemDescription, int weaponPower) {
         super(shortName, longName, theLongName, itemDescription, weaponPower);
     }
 
     @Override
     public boolean canUse() {
-        return true; // Et nærkampsvåben kan altid bruges
+        return true;
     }
 
     @Override
     public void use() {
+        // Nærkampsvåben forbruger ikke ammunition
     }
 
     @Override
     public int getRemainingUses() {
-        return -1; // Løber aldrig tør
+        return -1;
     }
 }

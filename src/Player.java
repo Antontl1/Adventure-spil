@@ -3,12 +3,9 @@ import java.util.ArrayList;
 // Holder styr på hvor spilleren står, og hvad han bærer på
 public class Player {
     private Room currentRoom;
-    // Spillerens liv. Starter på 100 og ændres, når han spiser
-    int maxHealth = 100;
-    int health = 100;
-    // Tom fra start. Fyldes når spilleren tager ting
+    private int maxHealth = 100;
+    private int health = 100;
     private ArrayList<Item> inventory = new ArrayList<>();
-    // Våbnet spilleren har i hånden. null indtil han equipper et
     private Weapon equippedWeapon = null;
 
     public Player(Room currentRoom) {
@@ -31,7 +28,13 @@ public class Player {
         return health;
     }
 
-    // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
+    public void takeDamage(int amount) {
+        this.health -= amount;
+        if (this.health < 0) {
+            this.health = 0;
+        }
+    }
+
     public Item findItemInInventory(String itemName) {
         for (Item item : inventory) {
             if (item.getShortName().equalsIgnoreCase(itemName)) {
@@ -40,10 +43,7 @@ public class Player {
         }
         return null;
     }
-// --- EQUIP & ATTACK ---
 
-    // Prøver at equippe en ting fra inventory
-    // Tingen bliver i inventory. equippedWeapon peger bare på den
     public EquipResult equipItem(String itemName) {
         Item item = findItemInInventory(itemName);
 
@@ -51,80 +51,72 @@ public class Player {
             return EquipResult.NOT_IN_INVENTORY;
         }
 
-        // instanceof tjekker om tingen er et våben. (Weapon) fortæller Java, at den må behandles som et
-        if (item instanceof Weapon) {
-            this.equippedWeapon = (Weapon) item;
+        if (item instanceof Weapon weapon) {
+            this.equippedWeapon = weapon;
             return EquipResult.SUCCESS;
         } else {
             return EquipResult.NOT_A_WEAPON;
         }
     }
 
-    // Angriber en fjende i rummet. Uden navn rammes den første fjende i rummet
-    // Ved ikke om det er nærkamp eller skydevåben. canUse() og use() svarer forskelligt alt efter subklassen
-    public AttackStatus attack(String enemyName) {
+    public AttackResult attack(String enemyName) {
         if (equippedWeapon == null) {
-            return AttackStatus.NO_WEAPON;
+            return new AttackResult(AttackStatus.NO_WEAPON, enemyName, 0, 0, 0, null, false);
         }
 
         if (!equippedWeapon.canUse()) {
-            return AttackStatus.WEAPON_OUT_OF_AMMO;
+            return new AttackResult(AttackStatus.WEAPON_OUT_OF_AMMO, enemyName, 0, 0, 0, null, false);
         }
 
-        // Find fjenden først, så der ikke bruges et skud, hvis der ikke er noget at ramme
         Enemy enemy;
         if (enemyName.isEmpty()) {
             if (currentRoom.getEnemies().isEmpty()) {
-                return AttackStatus.NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY;
+                return new AttackResult(AttackStatus.NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY, enemyName, 0, 0, 0, null, false);
             }
             enemy = currentRoom.getEnemies().get(0);
         } else {
             enemy = currentRoom.findEnemy(enemyName);
             if (enemy == null) {
-                return AttackStatus.ENEMY_NOT_FOUND;
+                return new AttackResult(AttackStatus.ENEMY_NOT_FOUND, enemyName, 0, 0, 0, null, false);
             }
         }
 
-        // use() tæller et skud ned på skydevåben. Nærkampsvåben gør ingenting
         equippedWeapon.use();
-        // takeDamage fjerner selv fjenden fra rummet og taber dens våben, hvis den dør
-        enemy.takeDamage(equippedWeapon.getDamage());
+        int damageDealt = equippedWeapon.getDamage();
+        enemy.takeDamage(damageDealt);
 
         if (!enemy.isAlive()) {
-            return AttackStatus.SUCCESS_ENEMY_KILLED;
+            return new AttackResult(AttackStatus.SUCCESS_ENEMY_KILLED, enemy.getShortName(), damageDealt, 0, 0, enemy.getWeapon(), false);
         }
 
-        // Fjenden overlevede og slår igen
-        enemy.attack(this);
-        return AttackStatus.SUCCESS_ENEMY_SURVIVED;
+        int damageReceived = enemy.attack(this);
+        boolean playerDied = (this.health <= 0);
+
+        return new AttackResult(AttackStatus.SUCCESS_ENEMY_SURVIVED, enemy.getShortName(), damageDealt, enemy.getHealth(), damageReceived, null, playerDied);
     }
 
-    // --- EAT ---
-
-    // Spiser en ting fra inventory. Svaret fortæller UserInterface, hvordan det gik
-    public FoodStatus eat(String itemName) {
-        // Man kan kun spise noget, man bærer på
+    public EatResult eat(String itemName) {
         Item item = findItemInInventory(itemName);
         if (item == null) {
-            return FoodStatus.NOT_FOUND;
+            return new EatResult(FoodStatus.NOT_FOUND, itemName, 0, health, false);
         }
-        // instanceof tjekker om tingen er mad, så casten nedenfor ikke crasher
-        if (item instanceof Food) {
-            // Casten giver adgang til getHealthPoints(), som kun Food har
-            Food food = (Food) item;
-            // Negative healthPoints (gift) trækker automatisk fra
-            health += food.getHealthPoints();
-            // Maden er spist, så den forsvinder fra inventory
+
+        if (item instanceof Food food) {
+            int healthPoints = food.getHealthPoints();
+            health += healthPoints;
             inventory.remove(food);
-            return FoodStatus.EATEN;
+
+            if (health > maxHealth) {
+                health = maxHealth;
+            }
+
+            boolean playerDied = (health <= 0);
+            return new EatResult(FoodStatus.EATEN, itemName, healthPoints, health, playerDied);
         } else {
-            return FoodStatus.NOT_FOOD;
+            return new EatResult(FoodStatus.NOT_FOOD, itemName, 0, health, false);
         }
     }
 
-    // --- TAKE & DROP ---
-
-    // Flytter en ting fra rummet til spilleren. null hvis den ikke lå i rummet
     public Item takeItem(String itemName) {
         Item item = currentRoom.findItem(itemName);
         if (item != null) {
@@ -134,8 +126,6 @@ public class Player {
         return item;
     }
 
-
-    // Flytter en ting fra spilleren til rummet. null hvis spilleren ikke havde den
     public Item dropItem(String itemName) {
         Item item = findItemInInventory(itemName);
         if (item != null) {
@@ -145,26 +135,11 @@ public class Player {
         return item;
     }
 
-    // --- BEVÆGELSE ---
+    public boolean goNorth() { return moveTo(currentRoom.getRoomNorth()); }
+    public boolean goSouth() { return moveTo(currentRoom.getRoomSouth()); }
+    public boolean goEast()  { return moveTo(currentRoom.getRoomEast()); }
+    public boolean goWest()  { return moveTo(currentRoom.getRoomWest()); }
 
-    // Spørger det nuværende rum om naboen i den retning. true hvis spilleren blev flyttet
-    public boolean goNorth() {
-        return moveTo(currentRoom.getRoomNorth());
-    }
-
-    public boolean goSouth() {
-        return moveTo(currentRoom.getRoomSouth());
-    }
-
-    public boolean goEast() {
-        return moveTo(currentRoom.getRoomEast());
-    }
-
-    public boolean goWest() {
-        return moveTo(currentRoom.getRoomWest());
-    }
-
-    // null betyder en væg, så spilleren bliver stående
     private boolean moveTo(Room room) {
         if (room == null) {
             return false;

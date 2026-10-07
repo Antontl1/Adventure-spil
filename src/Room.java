@@ -17,13 +17,8 @@ public class Room {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
 
     public void setRoomNorth(Room room) { this.north = room; }
     public Room getRoomNorth() { return north; }
