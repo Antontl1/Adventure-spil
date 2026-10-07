@@ -74,4 +74,8 @@ public class Adventure {
                 currentRoom.getExits() + "\n\n" +
                 currentRoom.getFormattedItems();
     }
+
+    public boolean playerIsDead() {
+        return player.isDead();
+    }
 }

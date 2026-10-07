@@ -18,6 +18,7 @@ public class UserInterface {
         IO.println(adventure.look());
 
         while (gameIsRunning) {
+
             IO.print("\n> ");
             String input = IO.readln().trim();
             // Tom linje: spring over og spørg igen
@@ -51,6 +52,10 @@ public class UserInterface {
                     gameIsRunning = false;
                 }
                 default -> IO.println("Unknown command. Type HELP for guidance.");
+            }
+            if(adventure.playerIsDead()){
+                IO.println("bad luck, du døde");
+                gameIsRunning=false;
             }
         }
     }
@@ -131,7 +136,7 @@ public class UserInterface {
 
     // Håndterer ATTACK
     private void handleAttack() {
-        AttackStatus status = adventure.attack();
+        AttackStatus status = adventure.attack(String );
         Weapon weapon = adventure.getEquippedWeapon();
 
         switch (status) {

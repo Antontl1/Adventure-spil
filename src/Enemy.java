@@ -1,9 +1,9 @@
 public class Enemy {
-    private String shortName;
-    private String longName;
-    private String description;
+    private final String shortName;
+    private final String longName;
+    private final String description;
     private int health;
-    private Weapon weapon;
+    private final Weapon weapon;
     private Room currentRoom;
 
     public Enemy(String shortName, String longName, String description, int health, Weapon weapon, Room currentRoom) {

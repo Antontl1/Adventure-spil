@@ -31,6 +31,10 @@ public class Player {
         return health;
     }
 
+    public void takeDamage(int amount) {
+        this.health -= amount;
+    }
+
     // Finder en ting spilleren bærer på ud fra det korte navn. null hvis han ikke har den
     public Item findItemInInventory(String itemName) {
         for (Item item : inventory) {
@@ -171,5 +175,8 @@ public class Player {
         }
         currentRoom = room;
         return true;
+    }
+    public boolean isDead(){
+       return this.health <= 0;
     }
 }
