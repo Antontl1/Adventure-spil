@@ -47,7 +47,7 @@ public class Adventure {
         return player.equipItem(itemName);
     }
 
-    public AttackStatus attack(String enemyName) {
+    public AttackResult attack(String enemyName) {
         return player.attack(enemyName);
     }
 
@@ -57,7 +57,7 @@ public class Adventure {
     }
 
     // Madmetoder. Sendes videre til Player
-    public FoodStatus eat(String itemName){
+    public EatResult eat(String itemName) {
         return player.eat(itemName);
     }
 
@@ -66,19 +66,19 @@ public class Adventure {
         return player.getHealth();
     }
 
-    // Henter rummets navn, beskrivelse, udgange og genstande
+    // Henter rummets navn, beskrivelse, udgange, genstande og fjender
     public String look() {
-        IO.print("You are in the ");
         Room currentRoom = player.getCurrentRoom();
-        return currentRoom.getName() + "\n" +
+        String result = currentRoom.getName() + "\n" +
                 currentRoom.getDescription() + "\n" +
                 currentRoom.getExits() + "\n\n" +
-                currentRoom.getFormattedItems() + "\n" +
-                currentRoom.getFormattedEnemies();
+                currentRoom.getFormattedItems();
 
-    }
+        String enemies = currentRoom.getFormattedEnemies();
+        if (!enemies.isEmpty()) {
+            result += "\n" + enemies;
+        }
 
-    public boolean playerIsDead() {
-        return player.isDead();
+        return result;
     }
 }

@@ -20,13 +20,8 @@ public class Room {
         this.description = description;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
+    public String getName() { return name; }
+    public String getDescription() { return description; }
 
     // --- NABORUM ---
     // Setterne bruges i Map, når kortet bygges. Getterne bruges af Player, når han går

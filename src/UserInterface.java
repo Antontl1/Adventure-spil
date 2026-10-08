@@ -11,13 +11,12 @@ public class UserInterface {
     // Spillets løkke. Kører indtil brugeren skriver EXIT
     public void runGame() {
         boolean gameIsRunning = true;
-        IO.println();
+
         IO.println("Welcome to The Adventure Game! You find yourself in the darkest of dungeons ...");
         IO.println("Type HELP to see available commands.\n");
         IO.println(adventure.look());
 
         while (gameIsRunning) {
-
             IO.print("\n> ");
             String input = IO.readln().trim();
             // Tom linje: spring over og spørg igen
@@ -25,13 +24,10 @@ public class UserInterface {
 
             // Deler input i kommando og resten, f.eks. "TAKE" og "iron rod"
             String[] parts = input.split(" ", 2);
-            // toUpperCase gør, at både "look" og "LOOK" virker
             String command = parts[0].toUpperCase();
-            // Har brugeren kun skrevet ét ord, er der ingen argument, og så bruges en tom tekst
             String argument = parts.length > 1 ? parts[1] : "";
 
             switch (command) {
-                // En retning skrevet alene, f.eks. "N", sendes videre som om der stod "GO N"
                 case "N", "NORTH", "S", "SOUTH", "E", "EAST", "W", "WEST" -> handleGo(command);
                 case "GO" -> handleGo(argument);
 
@@ -40,8 +36,18 @@ public class UserInterface {
                 case "DROP" -> handleDrop(argument);
 
                 case "EQUIP" -> handleEquip(argument);
-                case "ATTACK" -> handleAttack(argument);
-                case "EAT" -> handleEat(argument);
+                case "ATTACK" -> {
+                    boolean alive = handleAttack(argument);
+                    if (!alive) {
+                        gameIsRunning = false;
+                    }
+                }
+                case "EAT" -> {
+                    boolean alive = handleEat(argument);
+                    if (!alive) {
+                        gameIsRunning = false;
+                    }
+                }
 
                 case "HEALTH", "HP" -> handleHealth();
                 case "INVENTORY", "INV", "INVENT" -> showInventory();
@@ -52,14 +58,9 @@ public class UserInterface {
                 }
                 default -> IO.println("Unknown command. Type HELP for guidance.");
             }
-            if(adventure.playerIsDead()){
-                IO.println("bad luck, du døde");
-                gameIsRunning=false;
-            }
         }
     }
 
-    // Håndterer GO NORTH osv. Retningen er ordet efter GO
     private void handleGo(String direction) {
         if (direction.isEmpty()) {
             IO.println("Go where? (e.g. GO NORTH)");
@@ -75,7 +76,6 @@ public class UserInterface {
         }
     }
 
-    // Printer svaret på et forsøg på at gå. false betyder en væg
     private void tryMove(boolean success) {
         if (!success) {
             IO.println("A solid wall blocks your path. You cannot go that way.");
@@ -85,7 +85,6 @@ public class UserInterface {
         }
     }
 
-    // Håndterer TAKE. null betyder at tingen ikke lå i rummet
     private void handleTake(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to take?");
@@ -100,7 +99,6 @@ public class UserInterface {
         }
     }
 
-    // Håndterer DROP. null betyder at spilleren ikke havde tingen
     private void handleDrop(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to drop?");
@@ -115,7 +113,6 @@ public class UserInterface {
         }
     }
 
-    // Håndterer EQUIP <våben>
     private void handleEquip(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to equip?");
@@ -133,70 +130,37 @@ public class UserInterface {
         }
     }
 
-    // Håndterer ATTACK <fjende>. Uden navn rammes den første fjende i rummet
-    private void handleAttack(String enemyName) {
-        AttackStatus status = adventure.attack(enemyName);
-        Weapon weapon = adventure.getEquippedWeapon();
+    private boolean handleAttack(String enemyName) {
+        AttackResult result = adventure.attack(enemyName);
+        IO.println(result.getFormattedMessage());
 
-        switch (status) {
-            case NO_WEAPON -> IO.println("You dont have any weapon..");
-            case WEAPON_OUT_OF_AMMO -> IO.println("You dont have any ammo..");
-            case NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY -> IO.println("Specify a enemy in the room first");
-            case ENEMY_NOT_FOUND -> IO.println("The enemey wasent found, be its in the room");
-            case SUCCESS_ENEMY_KILLED -> {
-                // -1 betyder nærkampsvåben. Alle andre tal er skud tilbage
-                int remainingUses = weapon.getRemainingUses();
-                if (remainingUses == -1) {
-                    IO.println("You killed the enemy");
-                } else {
-                    IO.println("You fired " + weapon.getTheLongName() + " and killed the " + enemyName + ". You have " + remainingUses + " shots left.");
-                }
-            }
-            case SUCCESS_ENEMY_SURVIVED -> {
-                int remainingUses = weapon.getRemainingUses();
-                if (remainingUses == -1) {
-                    IO.println("You swing " + weapon.getLongName() + " and dealt " + weapon.getDamage() + " damage to the " + enemyName + ". It strikes back!");
-                } else {
-                    IO.println("You fired " + weapon.getTheLongName() + " and dealt " + weapon.getDamage() + " damage to the " + enemyName + ". It strikes back! You have " + remainingUses + " shots left.");
-                }
-            }
+        if (result.isPlayerDied()) {
+            IO.println("\n*** YOU HAVE DIED! GAME OVER ***");
+            return false;
         }
+        return true;
     }
 
-    // Håndterer EAT <mad>
-    public void handleEat(String itemName) {
+    private boolean handleEat(String itemName) {
         if (itemName.isEmpty()) {
             IO.println("What do you want to eat?");
-            return;
+            return true;
         }
 
-        int healthBefore = adventure.getHealth();
-        FoodStatus status = adventure.eat(itemName);
+        EatResult result = adventure.eat(itemName);
+        IO.println(result.getFormattedMessage());
 
-        switch (status) {
-            case NOT_FOUND -> IO.println("You don't have '" + itemName + "' in your inventory.");
-            case NOT_FOOD -> IO.println("The '" + itemName + "' is not edible!");
-            case EATEN -> {
-                int currentHealth = adventure.getHealth();
-                int difference = currentHealth - healthBefore;
-                if (difference > 0) {
-                    IO.println("You eat the " + itemName + " and restore " + difference + " HP!");
-                } else if (difference < 0) {
-                    IO.println("Ouch! The " + itemName + " was bad or poisonous and dealt " + Math.abs(difference) + " damage!");
-                } else {
-                    IO.println("You eat the " + itemName + ", but feel no change in health.");
-                }
-                IO.println("Your current health is now " + currentHealth + " HP");
-            }
+        if (result.isPlayerDied()) {
+            IO.println("\n*** YOU DIED FROM POISONING! GAME OVER ***");
+            return false;
         }
+        return true;
     }
 
-    // Vis spillerens nuværende helbred
     private void handleHealth() {
         IO.println("Current health: " + adventure.getHealth() + " HP");
     }
 
-    // Viser hvad spilleren bærer på og hvilket våben der er equipped
     private void showInventory() {
         ArrayList<Item> inventory = adventure.getPlayerInventory();
         if (inventory.isEmpty()) {
@@ -216,7 +180,6 @@ public class UserInterface {
         }
     }
 
-    // Dybdegående oversigt over kommandoer og eksempler
     private void showHelp() {
         IO.println("""
                 =================================== GAME HELP & COMMANDS ===================================
@@ -240,8 +203,8 @@ public class UserInterface {
                   • EQUIP <WEAPON>
                     Equip a weapon from your inventory to prepare it for combat.
                     Example: 'EQUIP sword'
-                  • ATTACK
-                    Use your currently equipped weapon.
+                  • ATTACK [ENEMY]
+                    Use your equipped weapon against a specified enemy, or the first enemy in the room.
                   • EAT <FOOD>
                     Eat a consumable item from your inventory to recover HP (beware of toxic food!).
                     Example: 'EAT apple'
