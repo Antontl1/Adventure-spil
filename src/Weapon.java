@@ -1,8 +1,8 @@
 // Fælles superklasse for alle våben. Abstrakt, så man kan ikke lave et "Weapon", kun et nærkamps- eller skydevåben.
 // Arver fra Item, så et våben kan ligge i et rum og samles op som alle andre ting
 public abstract class Weapon extends Item {
-    private String theLongName;
-    private int weaponPower;
+    private final String theLongName;
+    private final int weaponPower;
 
     // Sender teksterne videre til Item
     public Weapon(String shortName, String longName, String theLongName, String itemDescription, int weaponPower) {

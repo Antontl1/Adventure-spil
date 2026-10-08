@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 // Ejer spilleren og er bindeled mellem UserInterface og resten af spillet
 public class Adventure {
-    private Player player;
+    private final Player player;
 
     // Map bygger rummene. Spilleren sættes ind i det første
     public Adventure() {

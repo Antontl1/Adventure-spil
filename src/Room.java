@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 // Et rum med navn, beskrivelse, fire mulige naboer, de ting der ligger der og de fjender der står der
 public class Room {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
 
     // null betyder at der ikke er en dør den vej
     private Room north;
@@ -12,8 +12,8 @@ public class Room {
     private Room west;
 
     // Ting og fjender har hver sin liste, så TAKE aldrig kan samle en fjende op
-    private ArrayList<Item> inventory = new ArrayList<>();
-    private ArrayList<Enemy> enemies = new ArrayList<>();
+    private final ArrayList<Item> inventory = new ArrayList<>();
+    private final ArrayList<Enemy> enemies = new ArrayList<>();
 
     public Room(String name, String description) {
         this.name = name;

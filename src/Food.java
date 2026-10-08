@@ -2,7 +2,7 @@
 public class Food extends Item{
     // Hvor meget liv maden giver. Negativt tal betyder gift
     // Ikke static: hvert stykke mad har sit eget tal
-    private int healthPoints;
+    private final int healthPoints;
 
     // De tre tekster går videre til Item. healthPoints gemmer Food selv
     public Food(String shortName, String longName, String itemDescription, int healthPoints) {

@@ -1,10 +1,10 @@
 // En ting der kan ligge i et rum eller bæres af spilleren
 public class Item {
     // Det spilleren skriver, f.eks. TAKE sword
-    private String shortName;
+    private final String shortName;
     // Det der vises som navn, f.eks. "A Royal Sword"
-    private String longName;
-    private String itemDescription;
+    private final String longName;
+    private final String itemDescription;
 
     public Item(String shortName, String longName, String itemDescription) {
         this.shortName = shortName;

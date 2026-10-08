@@ -7,7 +7,7 @@ public class Enemy {
     private int health;
     private final Weapon weapon;
     // Rummet fjenden står i. Bruges, når den dør og skal fjernes
-    private Room currentRoom;
+    private final Room currentRoom;
 
     public Enemy(String shortName, String longName, String description, int health, Weapon weapon, Room currentRoom) {
         this.shortName = shortName;

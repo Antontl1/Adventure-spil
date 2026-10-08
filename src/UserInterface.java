@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 // Snakker med brugeren: læser kommandoer og printer svar. Kender kun Adventure
 public class UserInterface {
-    private Adventure adventure;
+    private final Adventure adventure;
 
     public UserInterface(Adventure adventure) {
         this.adventure = adventure;

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 public class Player {
     private Room currentRoom;
     // Spillerens liv. Starter på 100 og ændres, når han spiser eller bliver ramt
-    int maxHealth = 100;
+    final int maxHealth = 100;
     int health = 100;
     // Tom fra start. Fyldes når spilleren tager ting
-    private ArrayList<Item> inventory = new ArrayList<>();
+    private final ArrayList<Item> inventory = new ArrayList<>();
     // Våbnet spilleren har i hånden. null indtil han equipper et
     private Weapon equippedWeapon = null;
 
