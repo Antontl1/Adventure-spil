@@ -61,23 +61,23 @@ public class Player {
 
     public AttackResult attack(String enemyName) {
         if (equippedWeapon == null) {
-            return new AttackResult(AttackStatus.NO_WEAPON, enemyName, 0, 0, 0, null, false);
+            return new AttackResult(AttackStatus.NO_WEAPON, enemyName, 0, 0, 0, null, false, health);
         }
 
         if (!equippedWeapon.canUse()) {
-            return new AttackResult(AttackStatus.WEAPON_OUT_OF_AMMO, enemyName, 0, 0, 0, null, false);
+            return new AttackResult(AttackStatus.WEAPON_OUT_OF_AMMO, enemyName, 0, 0, 0, null, false, health);
         }
 
         Enemy enemy;
         if (enemyName.isEmpty()) {
             if (currentRoom.getEnemies().isEmpty()) {
-                return new AttackResult(AttackStatus.NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY, enemyName, 0, 0, 0, null, false);
+                return new AttackResult(AttackStatus.NO_ENEMY_SPECIFIED_AND_ROOM_EMPTY, enemyName, 0, 0, 0, null, false, health);
             }
             enemy = currentRoom.getEnemies().get(0);
         } else {
             enemy = currentRoom.findEnemy(enemyName);
             if (enemy == null) {
-                return new AttackResult(AttackStatus.ENEMY_NOT_FOUND, enemyName, 0, 0, 0, null, false);
+                return new AttackResult(AttackStatus.ENEMY_NOT_FOUND, enemyName, 0, 0, 0, null, false, health);
             }
         }
 
@@ -86,13 +86,13 @@ public class Player {
         enemy.takeDamage(damageDealt);
 
         if (!enemy.isAlive()) {
-            return new AttackResult(AttackStatus.SUCCESS_ENEMY_KILLED, enemy.getShortName(), damageDealt, 0, 0, enemy.getWeapon(), false);
+            return new AttackResult(AttackStatus.SUCCESS_ENEMY_KILLED, enemy.getShortName(), damageDealt, 0, 0, enemy.getWeapon(), false, health);
         }
 
         int damageReceived = enemy.attack(this);
         boolean playerDied = (this.health <= 0);
 
-        return new AttackResult(AttackStatus.SUCCESS_ENEMY_SURVIVED, enemy.getShortName(), damageDealt, enemy.getHealth(), damageReceived, null, playerDied);
+        return new AttackResult(AttackStatus.SUCCESS_ENEMY_SURVIVED, enemy.getShortName(), damageDealt, enemy.getHealth(), damageReceived, null, playerDied, health);
     }
 
     public EatResult eat(String itemName) {

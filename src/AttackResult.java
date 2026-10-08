@@ -6,8 +6,9 @@ public class AttackResult {
     private int damageReceived;
     private Weapon droppedWeapon;
     private boolean playerDied;
+    private int healthRemainig;
 
-    public AttackResult(AttackStatus status, String enemyName, int damageDealt, int enemyHealthRemaining, int damageReceived, Weapon droppedWeapon, boolean playerDied) {
+    public AttackResult(AttackStatus status, String enemyName, int damageDealt, int enemyHealthRemaining, int damageReceived, Weapon droppedWeapon, boolean playerDied, int healthRemaining) {
         this.status = status;
         this.enemyName = enemyName;
         this.damageDealt = damageDealt;
@@ -15,6 +16,7 @@ public class AttackResult {
         this.damageReceived = damageReceived;
         this.droppedWeapon = droppedWeapon;
         this.playerDied = playerDied;
+        this.healthRemainig = healthRemaining;
     }
 
     public AttackStatus getStatus() { return status; }
@@ -36,7 +38,7 @@ public class AttackResult {
             }
             case SUCCESS_ENEMY_SURVIVED -> {
                 String msg = "You hit the " + enemyName + " for " + damageDealt + " damage (Health left: " + enemyHealthRemaining + " HP).\n" +
-                        "The " + enemyName + " attacks back and deals " + damageReceived + " damage to you!";
+                        "The " + enemyName + " attacks back and deals " + damageReceived + " damage to you! (Health left: " + healthRemainig + " HP)";
                 if (playerDied) {
                     msg += "\nYou have succumbed to your injuries...";
                 }
